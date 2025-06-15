@@ -8,112 +8,84 @@ import PurchaseModal from "./purchase-modal"
 
 const fundedAccounts = [
   {
-    title: "START",
-    amount: "625$",
+    title: "MINI",
+    amount: "1 000$",
     features: [
-      "10% - (62.5$) umumiy yo'qotish bo'lmasligi lozim!",
+      "8% umumiy yo'qotish bo'lmasligi lozim!",
       "Yo'q - target (foyda chegarasi yo'q)",
       "80% gacha qilingan daromaddan olinadigan ulushingiz",
     ],
-    oldPrice: "940 000 UZS",
-    price: "790 000 UZS",
-    platform: "Ctrader",
-    featured: false,
-    available: true,
-  },
-  {
-    title: "MIDDLE",
-    amount: "1000$",
-    features: [
-      "8% - (80$) umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "1 195 000 UZS",
-    price: "1 040 000 UZS",
-    platform: "Metatrader 5",
-    featured: false,
-    available: true,
-  },
-  {
-    title: "MIDDLE",
-    amount: "1250$",
-    features: [
-      "10% - (125$) umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "1 480 000 UZS",
-    price: "1 230 000 UZS",
+    oldPrice: "",
+    price: "1 100 000 UZS",
     platform: "Ctrader",
     featured: false,
     available: true,
   },
   {
     title: "MINI",
-    amount: "2500$",
+    amount: "2 500$",
     features: [
       "8% umumiy yo'qotish bo'lmasligi lozim!",
       "Yo'q - target (foyda chegarasi yo'q)",
       "80% gacha qilingan daromaddan olinadigan ulushingiz",
     ],
-    oldPrice: "1 680 000 UZS",
-    price: "1 590 000 UZS",
+    oldPrice: "",
+    price: "1 800 000 UZS",
     platform: "Metatrader 5",
     featured: false,
     available: true,
   },
   {
-    title: "NORMAL",
-    amount: "5000$",
+    title: "START+",
+    amount: "5 000$",
     features: [
       "8% umumiy yo'qotish bo'lmasligi lozim!",
       "Yo'q - target (foyda chegarasi yo'q)",
       "80% gacha qilingan daromaddan olinadigan ulushingiz",
     ],
-    oldPrice: "3 050 000 UZS",
-    price: "2 900 000 UZS",
-    platform: "Metatrader 5",
+    oldPrice: "",
+    price: "3 300 000 UZS",
+    platform: "Ctrader",
     featured: true,
     available: true,
   },
   {
-    title: "VIP",
+    title: "START+",
     amount: "10 000$",
     features: [
       "8% umumiy yo'qotish bo'lmasligi lozim!",
       "Yo'q - target (foyda chegarasi yo'q)",
       "80% gacha qilingan daromaddan olinadigan ulushingiz",
     ],
-    oldPrice: "5 780 000 UZS",
-    price: "5 595 000 UZS",
+    oldPrice: "",
+    price: "6 000 000 UZS",
     platform: "Metatrader 5",
-    featured: true,
+    featured: false,
     available: true,
   },
   {
-    title: "PREMIUM",
+    title: "MEDIUM",
     amount: "25 000$",
     features: [
       "8% umumiy yo'qotish bo'lmasligi lozim!",
       "Yo'q - target (foyda chegarasi yo'q)",
       "80% gacha qilingan daromaddan olinadigan ulushingiz",
     ],
-    oldPrice: "11 645 000 UZS",
-    price: "11 405 000 UZS",
+    oldPrice: "",
+    price: "12 000 000 UZS",
     platform: "Metatrader 5",
-    featured: false,
+    featured: true,
     available: true,
   },
   {
-    title: "PREMIUM+",
+    title: "PREMIUM",
     amount: "50 000$",
     features: [
       "8% umumiy yo'qotish bo'lmasligi lozim!",
       "Yo'q - target (foyda chegarasi yo'q)",
       "80% gacha qilingan daromaddan olinadigan ulushingiz",
     ],
-    oldPrice: "23 570 000 UZS",
+    oldPrice: "",
     price: "23 000 000 UZS",
     platform: "Metatrader 5",
     featured: false,
@@ -158,12 +130,12 @@ export default function FundedAccountsSection() {
             <div
               key={`${account.title}-${index}`}
               className={cn(
-                "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative", // Added relative for badge positioning
+                "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative",
                 `animate-delay-${((index % 3) + 1) * 100}`,
                 account.featured
-                  ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg" // Enhanced featured styling
+                  ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
                   : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
-                !account.available && "opacity-60 cursor-not-allowed", // Dim unavailable items
+                !account.available && "opacity-60 cursor-not-allowed",
               )}
             >
               {account.featured && (
@@ -226,7 +198,7 @@ export default function FundedAccountsSection() {
                   </div>
                   <div className="text-sm">
                     <strong>Yechib olish: </strong>
-                    hisob olingan kundan boshlab 14 kundan keyin yechishga so'rov bera olasiz
+                    qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz
                   </div>
                 </div>
 
@@ -252,7 +224,7 @@ export default function FundedAccountsSection() {
                   account.featured
                     ? "bg-white text-blue-600 hover:bg-gray-100"
                     : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
-                  !account.available && "bg-gray-600 hover:bg-gray-600 cursor-not-allowed", // Disabled button style
+                  !account.available && "bg-gray-600 hover:bg-gray-600 cursor-not-allowed",
                 )}
                 onClick={() => handleOpenModal(account.title, account.price, account.amount)}
                 disabled={!account.available}
