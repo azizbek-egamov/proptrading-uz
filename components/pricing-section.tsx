@@ -9,34 +9,15 @@ import PurchaseModal from "./purchase-modal"
 const pricingOptions = [
   {
     title: "MINI",
-    price: "2 500$",
-    features: [
-      "kunlik zarar miqdori 4% - (100$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (150$) dan oshmasligi lozim",
-      "10% target (foyda qilish lozim)",
-      "70% - 90% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "500 000 UZS",
-    price_uzs: "380 000 UZS",
-    withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
-    platform: "Matchtrade | Metatrader 4/5",
-    featured: false,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "MINI",
     price: "5 000$",
     features: [
       "kunlik zarar miqdori 4% - (200$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (300$) dan oshmasligi lozim",
       "10% target (foyda qilish lozim)",
-      "70% - 90% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
-    oldPrice: "850 000 UZS",
-    price_uzs: "700 000 UZS",
+    oldPrice: "",
+    price_uzs: "800 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
     platform: "Matchtrade | Metatrader 4/5",
@@ -52,52 +33,52 @@ const pricingOptions = [
       "kunlik zarar miqdori 3% - (210$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (420$) dan oshmasligi lozim",
       "10% target (foyda qilish lozim)",
-      "80% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
-    oldPrice: "1 015 000 UZS",
-    price_uzs: "hozir mavjud emas",
+    oldPrice: "",
+    price_uzs: "1 050 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
     platform: "Metatrader 4/5",
-    featured: true,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: false, // Mark as unavailable
-  },
-  {
-    title: "START+",
-    price: "10 000$",
-    features: [
-      "kunlik zarar miqdori 3% - 300$ dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (600$) dan oshmasligi lozim",
-      "10% target (1000$ foyda qilish lozim)",
-      "70% - 90% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "1 370 000 UZS",
-    price_uzs: "1 000 000 UZS",
-    withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
-    platform: "Matchtrade | Metatrader 4/5",
     featured: false,
-    discount_text: "skidka faqat 20-aprelgacha",
+    discount_text: "",
     button_text: "Prop hisobni sotib olish!",
     available: true,
   },
   {
-    title: "MEDIUM",
+    title: "START",
+    price: "10 000$",
+    features: [
+      "kunlik zarar miqdori 3% - (300$) dan oshmasligi lozim",
+      "umumiy zarar miqdori 6% - (600$) dan oshmasligi lozim",
+      "10% target (1000$ foyda qilish lozim)",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
+    ],
+    oldPrice: "",
+    price_uzs: "1 200 000 UZS",
+    withdrawal:
+      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+    platform: "Matchtrade | Metatrader 4/5",
+    featured: true,
+    discount_text: "",
+    button_text: "Prop hisobni sotib olish!",
+    available: true,
+  },
+  {
+    title: "START+",
     price: "15 000$",
     features: [
       "kunlik zarar miqdori 3% - (450$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (900$) dan oshmasligi lozim",
       "10% target (1500$ foyda qilish lozim)",
-      "70%-90% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
-    oldPrice: "1 680 000 UZS",
-    price_uzs: "1 580 000 UZS",
+    oldPrice: "",
+    price_uzs: "1 800 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
-    platform: "Metatrader 4/5",
-    featured: true,
+    platform: "Matchtrade | Metatrader 4/5",
+    featured: false,
     discount_text: "",
     button_text: "Prop hisobni sotib olish!",
     available: true,
@@ -109,15 +90,15 @@ const pricingOptions = [
       "kunlik zarar miqdori 3% - (750$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (1500$) dan oshmasligi lozim",
       "10% target (2500$ foyda qilish lozim)",
-      "70-90% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
-    oldPrice: "2 980 000 UZS",
+    oldPrice: "",
     price_uzs: "2 500 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
     platform: "Matchtrade | Metatrader 4/5",
-    featured: false,
-    discount_text: "skidka faqat 20-aprelgacha",
+    featured: true,
+    discount_text: "",
     button_text: "Prop hisobni sotib olish!",
     available: true,
   },
@@ -128,15 +109,15 @@ const pricingOptions = [
       "kunlik zarar miqdori 3% - (1500$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (3000$) dan oshmasligi lozim",
       "10% target (5000$ foyda qilish lozim)",
-      "70-90% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "4 900 000 UZS",
+    price_uzs: "4 300 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
     platform: "Matchtrade | Metatrader 4/5",
     featured: false,
-    discount_text: "skidka faqat 20-aprelgacha",
+    discount_text: "",
     button_text: "Prop hisobni sotib olish!",
     available: true,
   },
@@ -147,10 +128,10 @@ const pricingOptions = [
       "kunlik zarar miqdori 3% - (3000$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (6000$) dan oshmasligi lozim",
       "10% target (10 000$ foyda qilish lozim)",
-      "70-90% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "7 000 000 UZS",
+    price_uzs: "6 500 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
     platform: "Metatrader 4/5",
@@ -164,12 +145,12 @@ const pricingOptions = [
     price: "200 000$",
     features: [
       "kunlik zarar miqdori 3% - (6000$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - 12 000$) dan oshmasligi lozim",
+      "umumiy zarar miqdori 6% - (12 000$) dan oshmasligi lozim",
       "10% target (20 000$ foyda qilish lozim)",
-      "70-90% qilingan daromaddan olinadigan ulush",
+      "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "12 000 000 UZS",
+    price_uzs: "13 500 000 UZS",
     withdrawal:
       "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
     platform: "Metatrader 4/5",
@@ -215,13 +196,13 @@ export default function PricingSection() {
             <div
               key={`${option.title}-${index}`}
               className={cn(
-                "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative", // Added relative for badge positioning
+                "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative",
                 "hover-lift animate-fade-in-up",
                 `animate-delay-${((index % 3) + 1) * 100}`,
                 option.featured
-                  ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg" // Enhanced featured styling
+                  ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
                   : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
-                !option.available && "opacity-60 cursor-not-allowed", // Dim unavailable items
+                !option.available && "opacity-60 cursor-not-allowed",
               )}
             >
               {option.featured && (
@@ -323,7 +304,7 @@ export default function PricingSection() {
                   option.featured
                     ? "bg-white text-blue-600 hover:bg-gray-100"
                     : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
-                  !option.available && "bg-gray-600 hover:bg-gray-600 cursor-not-allowed", // Disabled button style
+                  !option.available && "bg-gray-600 hover:bg-gray-600 cursor-not-allowed",
                 )}
                 onClick={() => handleOpenModal(option.title, option.price_uzs, option.price)}
                 disabled={!option.available}
