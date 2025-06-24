@@ -139,7 +139,7 @@ export default function PropTradingLanding() {
           <div className="flex items-center space-x-4">
             <div className="hidden lg:flex items-center space-x-2 text-sm">
               <Phone className="w-4 h-4 text-blue-400" />
-              <span>+998 90 001 29 59</span>
+              <span>+998 50 001 29 59</span>
             </div>
             {!isMobile && (
               <Button onClick={() => scrollToSection(pricingRef)} className="btn-gradient">
@@ -161,13 +161,12 @@ export default function PropTradingLanding() {
             <div className="space-y-6 md:space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-left text-shadow-lg">
-                  PROP treyding
+                  Katta <span className="gradient-text bg-gradient-to-r from-blue-400 to-cyan-300 animate-gradient">
+                    KAPITAL
+                  </span>{" "}
                 </h1>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-left animate-delay-200 text-shadow-lg">
-                  <span className="gradient-text bg-gradient-to-r from-blue-400 to-cyan-300 animate-gradient">
-                    PROFESSIONALLAR
-                  </span>{" "}
-                  bilan !
+                  endi muammo emas!
                 </h2>
               </div>
 
