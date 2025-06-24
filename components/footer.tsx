@@ -66,6 +66,17 @@ export default function Footer() {
               >
                 <Youtube className="w-5 h-5 text-gray-400 hover:text-white" />
               </a>
+              <a
+                href="https://t.me/+2C4gMfiKi-gyMDEy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-800/50 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-all duration-300 hover-lift"
+                aria-label="Telegram Group"
+              >
+                <svg className="w-5 h-5 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21.543 2.467a2.3 2.3 0 0 0-2.356-.183L3.21 10.09c-1.01.484-.96 1.885.08 2.29l3.89 1.5 1.48 4.73c.29.93 1.47 1.18 2.09.44l2.07-2.36 3.98 3.1c.82.64 2.02.16 2.22-.86l3.42-15.16a2.3 2.3 0 0 0-.88-2.264z" />
+                </svg>
+              </a>
             </div>
           </div>
 
