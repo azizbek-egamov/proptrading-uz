@@ -108,7 +108,7 @@ export default function AloqaSection() {
                   </div>
                   <div>
                     <p className="text-gray-400">Telefon raqam</p>
-                    <p className="text-white font-semibold text-lg">+998 90 001 29 59</p>
+                    <p className="text-white font-semibold text-lg">+998 50 001 29 59</p>
                   </div>
                 </div>
 
