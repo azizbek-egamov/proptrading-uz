@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getNextRequestNumber } from '@/lib/request-counter'
+import { getNextRequestNumber, getFallbackRequestNumber } from '@/lib/request-counter'
 
 // Fallback to hardcoded values if environment variables are not set
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8105645545:AAEQzQv7sgGiM8cq9wc_mg6I5h2ubuzBCmQ'
@@ -24,9 +24,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get the next request number
-    const requestNumber = getNextRequestNumber()
-    console.log('Generated request number:', requestNumber)
+    // Get the next request number (try KV first, fallback to timestamp-based)
+    let requestNumber: number
+    try {
+      requestNumber = await getNextRequestNumber()
+      console.log('Generated request number from KV:', requestNumber)
+    } catch (error) {
+      console.error('KV error, using fallback:', error)
+      requestNumber = getFallbackRequestNumber()
+      console.log('Generated fallback request number:', requestNumber)
+    }
 
     // Format the message for Telegram
     const telegramMessage = `
