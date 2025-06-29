@@ -64,8 +64,6 @@ export default function PurchaseModal({
 
       if (response.ok && result.success) {
         setIsSubmitted(true)
-        // Show success message with request number
-        alert(`Arizangiz #${result.requestNumber} raqami bilan qabul qilindi!`)
       } else {
         throw new Error(result.error || 'Xabar yuborishda xatolik')
       }
