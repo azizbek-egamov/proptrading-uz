@@ -1,47 +1,68 @@
-import fs from 'fs'
-import path from 'path'
+// Hybrid request counter for Vercel deployment
+// Uses date-based prefix + daily counter for better sequential numbering
 
-const COUNTER_FILE_PATH = path.join(process.cwd(), 'data', 'request-counter.json')
+import { kv } from '@vercel/kv'
 
 export interface RequestCounter {
   requestNumber: number
 }
 
-export function getRequestNumber(): number {
-  try {
-    if (!fs.existsSync(COUNTER_FILE_PATH)) {
-      // Create the file if it doesn't exist
-      const initialData: RequestCounter = { requestNumber: 1 }
-      fs.writeFileSync(COUNTER_FILE_PATH, JSON.stringify(initialData, null, 2))
-      return 1
-    }
+function getDailyCounter(): number {
+  const today = new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+  const timestamp = Date.now()
+  
+  // Use last 4 digits of timestamp as daily counter
+  // This gives us a number between 0-9999 for each day
+  return timestamp % 10000
+}
 
-    const data = fs.readFileSync(COUNTER_FILE_PATH, 'utf-8')
-    const counter: RequestCounter = JSON.parse(data)
-    return counter.requestNumber
+export async function getRequestNumber(): Promise<number> {
+  try {
+    const counter = await kv.get<number>('prop-request-counter')
+    return counter || 1
   } catch (error) {
-    console.error('Error reading request counter:', error)
+    console.error('Error getting request counter from KV:', error)
     return 1
   }
 }
 
-export function incrementRequestNumber(): number {
+export async function incrementRequestNumber(): Promise<number> {
   try {
-    const currentNumber = getRequestNumber()
+    const currentNumber = await getRequestNumber()
     const newNumber = currentNumber + 1
     
-    const updatedData: RequestCounter = { requestNumber: newNumber }
-    fs.writeFileSync(COUNTER_FILE_PATH, JSON.stringify(updatedData, null, 2))
-    
+    await kv.set('prop-request-counter', newNumber)
     return newNumber
   } catch (error) {
-    console.error('Error incrementing request counter:', error)
+    console.error('Error incrementing request counter in KV:', error)
     return 1
   }
 }
 
-export function getNextRequestNumber(): number {
-  const currentNumber = getRequestNumber()
-  incrementRequestNumber()
+export async function getNextRequestNumber(): Promise<number> {
+  const currentNumber = await getRequestNumber()
+  await incrementRequestNumber()
   return currentNumber
+}
+
+// Alternative: Simple timestamp-based unique ID
+export function getUniqueRequestId(): string {
+  const timestamp = Date.now()
+  const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0')
+  return `${timestamp}${random}`
+}
+
+// Function to reset counter (for testing)
+export function resetRequestCounter(): void {
+  // Resetting the counter is not applicable in the timestamp-based approach
+}
+
+// Fallback function for when KV is not available
+export function getFallbackRequestNumber(): number {
+  const today = new Date().toISOString().split('T')[0].replace(/-/g, '') // YYYYMMDD
+  const timestamp = Date.now()
+  const dailyCounter = timestamp % 10000
+  
+  // Format: YYYYMMDD + 4-digit counter
+  return parseInt(today + dailyCounter.toString().padStart(4, '0'), 10)
 } 
