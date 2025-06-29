@@ -45,29 +45,29 @@ export default function PurchaseModal({
     setIsSubmitting(true)
 
     try {
-      const telegramMessage = `🔥 YANGI PROP HISOB BUYURTMASI!\n\n💰 Tanlangan hisob: ${accountTitle} (${accountAmount})\n💵 Narxi: ${accountPrice}\n\n👤 Ism: ${formData.name}\n🏠 Manzil: ${formData.address}\n📧 Email: ${formData.email}\n📞 Telefon: ${formData.phone}\n\n🔄 Savdo turi: ${
-        formData.tradeOption === "self" ? "O'zim savdo qilaman" : "Jamoangiz bilan birga savdo qilish istagim bor"
-      }\n\n⏰ Vaqt: ${new Date().toLocaleString("uz-UZ")}`
-
-      const response = await fetch(
-        `https://api.telegram.org/bot8105645545:AAEQzQv7sgGiM8cq9wc_mg6I5h2ubuzBCmQ/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: "-1002679316202",
-            text: telegramMessage,
-            parse_mode: "HTML",
-          }),
+      const response = await fetch('/api/submit-request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      )
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          accountType: `${accountTitle} (${accountAmount}) - ${accountPrice}`,
+          message: `Manzil: ${formData.address}\nEmail: ${formData.email}\nSavdo turi: ${
+            formData.tradeOption === "self" ? "O'zim savdo qilaman" : "Jamoangiz bilan birga savdo qilish istagim bor"
+          }`
+        }),
+      })
 
-      if (response.ok) {
+      const result = await response.json()
+
+      if (response.ok && result.success) {
         setIsSubmitted(true)
+        // Show success message with request number
+        alert(`Arizangiz #${result.requestNumber} raqami bilan qabul qilindi!`)
       } else {
-        throw new Error("Xabar yuborishda xatolik")
+        throw new Error(result.error || 'Xabar yuborishda xatolik')
       }
     } catch (error) {
       console.error("Error:", error)
