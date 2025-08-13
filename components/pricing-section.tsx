@@ -9,17 +9,17 @@ import PurchaseModal from "./purchase-modal"
 const pricingOptions = [
   {
     title: "MINI",
-    price: "5 000$",
+    price: "2 500$",
     features: [
-      "kunlik zarar miqdori 4% - (200$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (300$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (100$) dan oshmasligi lozim",
+      "umumiy zarar miqdori 6% - (150$) dan oshmasligi lozim",
       "10% target (foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "800 000 UZS",
+    price_uzs: "370 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Matchtrade | Metatrader 4/5",
     featured: false,
     discount_text: "",
@@ -28,17 +28,17 @@ const pricingOptions = [
   },
   {
     title: "START",
-    price: "7 000$",
+    price: "5 000$",
     features: [
-      "kunlik zarar miqdori 3% - (210$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (420$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (200$) dan oshmasligi lozim",
+      "umumiy zarar miqdori 6% - (300$) dan oshmasligi lozim",
       "10% target (foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "1 050 000 UZS",
+    price_uzs: "650 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Metatrader 4/5",
     featured: false,
     discount_text: "",
@@ -49,36 +49,17 @@ const pricingOptions = [
     title: "START",
     price: "10 000$",
     features: [
-      "kunlik zarar miqdori 3% - (300$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (400$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (600$) dan oshmasligi lozim",
       "10% target (1000$ foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "1 200 000 UZS",
+    price_uzs: "990 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Matchtrade | Metatrader 4/5",
     featured: true,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "START+",
-    price: "15 000$",
-    features: [
-      "kunlik zarar miqdori 3% - (450$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (900$) dan oshmasligi lozim",
-      "10% target (1500$ foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "",
-    price_uzs: "1 800 000 UZS",
-    withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
-    platform: "Matchtrade | Metatrader 4/5",
-    featured: false,
     discount_text: "",
     button_text: "Prop hisobni sotib olish!",
     available: true,
@@ -87,15 +68,15 @@ const pricingOptions = [
     title: "STANDART",
     price: "25 000$",
     features: [
-      "kunlik zarar miqdori 3% - (750$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (1000$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (1500$) dan oshmasligi lozim",
       "10% target (2500$ foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "2 500 000 UZS",
+    price_uzs: "1 970 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Matchtrade | Metatrader 4/5",
     featured: true,
     discount_text: "",
@@ -106,15 +87,15 @@ const pricingOptions = [
     title: "OMMAVIY",
     price: "50 000$",
     features: [
-      "kunlik zarar miqdori 3% - (1500$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (2000$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (3000$) dan oshmasligi lozim",
       "10% target (5000$ foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
     ],
     oldPrice: "",
-    price_uzs: "4 300 000 UZS",
+    price_uzs: "4 000 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Matchtrade | Metatrader 4/5",
     featured: false,
     discount_text: "",
@@ -125,7 +106,7 @@ const pricingOptions = [
     title: "PREMIUM",
     price: "100 000$",
     features: [
-      "kunlik zarar miqdori 3% - (3000$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (4000$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (6000$) dan oshmasligi lozim",
       "10% target (10 000$ foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
@@ -133,7 +114,7 @@ const pricingOptions = [
     oldPrice: "",
     price_uzs: "6 500 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Metatrader 4/5",
     featured: true,
     discount_text: "",
@@ -144,7 +125,7 @@ const pricingOptions = [
     title: "VIP",
     price: "200 000$",
     features: [
-      "kunlik zarar miqdori 3% - (6000$) dan oshmasligi lozim",
+      "kunlik zarar miqdori 4% - (8000$) dan oshmasligi lozim",
       "umumiy zarar miqdori 6% - (12 000$) dan oshmasligi lozim",
       "10% target (20 000$ foyda qilish lozim)",
       "70% - 80% qilingan daromaddan olinadigan ulush",
@@ -152,7 +133,7 @@ const pricingOptions = [
     oldPrice: "",
     price_uzs: "13 500 000 UZS",
     withdrawal:
-      "REALga o'tgach, birinchi profitdan (foydadan) darhol so'rov berib yechib olasiz (prop hisobga to'lagan pulingiz ham avtomatik qaytariladi)",
+      "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
     platform: "Metatrader 4/5",
     featured: false,
     discount_text: "",
@@ -160,6 +141,7 @@ const pricingOptions = [
     available: true,
   },
 ]
+
 
 export default function PricingSection() {
   const [modalOpen, setModalOpen] = useState(false)
