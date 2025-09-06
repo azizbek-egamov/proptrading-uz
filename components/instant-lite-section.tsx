@@ -184,7 +184,7 @@ export default function InstantLiteSection() {
         <PurchaseModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
-          accountTitle="Imtihonsiz - Real proplar"
+          accountTitle="Imtihonsiz - Real prop"
           accountAmount={selectedAccount.size}
           accountPrice={selectedAccount.price}
         />
