@@ -86,7 +86,7 @@ export default function PropTradingLanding() {
   const pricingCards = [
     {
       title: "Imtihonli Proplar",
-      subtitle: "(etapli)",
+      subtitle: "(etapli) Aksiya 1+1",
       description: "Imtihonli challenge prop hisoblar. 10% target bilan, 4% kunlik va 6% umumiy zarar chegarasi.",
       features: [
         "10% Target talab qilinadi",
