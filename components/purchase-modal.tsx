@@ -144,7 +144,7 @@ export default function PurchaseModal({
 
   const copyCardNumber = async () => {
     try {
-      await navigator.clipboard.writeText("9860080366441417")
+      await navigator.clipboard.writeText("8600120418409390")
       alert("Karta raqami nusxalandi!")
     } catch (err) {
       console.error("Failed to copy: ", err)
@@ -302,7 +302,7 @@ export default function PurchaseModal({
                       <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0">
                           <div className="text-sm md:text-lg lg:text-xl font-mono text-white tracking-wide md:tracking-wider font-bold whitespace-nowrap overflow-hidden">
-                            9860 0803 6644 1417
+                            8600 1204 1840 9390
                           </div>
                         </div>
                         <Button
