@@ -26,6 +26,49 @@ import ConsistencyGuideSection from "@/components/consistency-guide-section"
 // import InstantLiteSection from "@/components/instant-lite-section" // Removed import for Instant Lite section
 import { useIsMobile } from "@/hooks/use-mobile"
 
+// Matnlar JSON formatda
+const messages = [
+    "Islom 5 000$lik hisobdan 237$ yechdi.",
+    "Anvar 25 000$lik hisob xarid qildi!",
+    "Laylo 10 000$ challenge'ni muvaffaqiyatli yakunladi — bonus olindi.",
+    "Jamshid 2 000$ bilan 1 200$ foyda chiqardi.",
+    "Sardor VIP ga o'tib, 50% imtiyoz oldi.",
+    "Nilufar 1 500$dan 300$ yechdi — chiqish muvaffaqiyatli.",
+    "Bek 50 000$lik prop'ni sotib oldi — welcome aboard!",
+    "Malika Start paketini oldi — o'qish boshlandi.",
+    "Farhod 7 kun ichida 18% ROI ko'rsatdi.",
+    "Shoxrux 3,200$ balansni 740$ ga ko'paytirdi.",
+    "Diyor 10 000$ challenge'ni PASS qildi — real account ochildi.",
+    "Saida profitni yechib, 420$ olindi.",
+    "Odil demo'dan realga o'tdi — tabrik!",
+    "Yusuf 25$ depozit qildi — start olindi.",
+    "Nil 15 000$ hisobni sotib oldi — level up.",
+    "Aziza 2 ta pullik modulni sotib oldi — bilim +1.",
+    "Kamol 5 000$ challenge'dan 500$ yechdi — nice.",
+    "Alisher PRO paket + prop application yubordi.",
+    "Shirin 900$ foyda olib, hisobni yechdi.",
+    "Javlon 30-kun ichida 12% konsistensiya ko'rsatdi.",
+    "Zebo VIP-kanalga obuna bo'ldi — premium signals.",
+    "Umid 50$ depozit olib test boshladi.",
+    "Nodir 100% pass — prop'ga yo'l ochildi.",
+    "Lola 1,000$ bilan 150$ foyda oldi.",
+    "Mirzam 20 000$ hisobni sotib oldi — big move.",
+    "Saodat challenge'dan 0% drawdown bilan o'tdi.",
+    "Aziz 3 ta kun ichida 2x growth — shunchaki ajoyib.",
+    "Shahnoza 2,500$ yechdi — balans yangilandi.",
+    "Orif 10 000$ hisobni qayta aktiv qildi.",
+    "Dilshod PRO robotni xarid qildi — avtomatik scalping.",
+    "Feruza copy-trade funksiyasini yoqdi — follower+1.",
+    "Botir 400$ profitni yechib, tashrif buyurdi.",
+    "Nodira 5 kun ichida 7% growth — konsistensiya yaxshi.",
+    "Qodir 12 000$ challenge'ni olgan — imkoniyat katta.",
+    "Maftuna 250$ depozit qilib, demo'dan realga o'tdi.",
+    "Ikrom 800$ profit bilan hisobni yechdi.",
+    "Sherzod VIP-mentor bilan 1:1 sessiya oldi.",
+    "Dilbar 3-kurs modulini tugatdi — sertifikat tayyor.",
+    "Ravshan 15 000$ accountni qayta sotib oldi.",
+]
+
 export default function PropTradingLanding() {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -35,6 +78,8 @@ export default function PropTradingLanding() {
   })
   const [videoModalOpen, setVideoModalOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [currentMessage, setCurrentMessage] = useState("")
+  const [messageOpacity, setMessageOpacity] = useState(1)
   const isMobile = useIsMobile()
 
   // References to sections for smooth scrolling
@@ -79,6 +124,35 @@ export default function PropTradingLanding() {
     return () => {
       clearInterval(timer)
       window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  // Random matnlarni almashib turadigan useEffect
+  useEffect(() => {
+    // Dastlabki matnni random tanlash
+    const getRandomMessage = () => {
+      const randomIndex = Math.floor(Math.random() * messages.length)
+      return messages[randomIndex]
+    }
+
+    // Birinchi matnni ko'rsatish
+    setCurrentMessage(getRandomMessage())
+
+    // Har 4 soniyada yangi matn ko'rsatish
+    const messageInterval = setInterval(() => {
+      // Fade out animatsiya
+      setMessageOpacity(0)
+      
+      setTimeout(() => {
+        // Yangi random matn
+        setCurrentMessage(getRandomMessage())
+        // Fade in animatsiya
+        setMessageOpacity(1)
+      }, 300) // 300ms fade out vaqt
+    }, 4000) // 4 soniya interval
+
+    return () => {
+      clearInterval(messageInterval)
     }
   }, [])
 
@@ -514,6 +588,28 @@ export default function PropTradingLanding() {
 
       {/* Video Modal */}
       <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
+
+      {/* Random Messages - Chap pastki burchak */}
+      {currentMessage && (
+        <div className="fixed bottom-24 md:bottom-6 left-4 md:left-6 z-40 max-w-[calc(100vw-8rem)] md:max-w-sm lg:max-w-md">
+          <div
+            className="bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-md rounded-lg px-3 py-2 md:px-4 md:py-3 shadow-2xl border border-blue-400/30"
+            style={{
+              opacity: messageOpacity,
+              transition: "opacity 0.3s ease-in-out",
+            }}
+          >
+            <div className="flex items-start space-x-2 md:space-x-3">
+              <div className="flex-shrink-0 mt-1">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              </div>
+              <p className="text-white text-xs md:text-sm lg:text-base font-medium leading-relaxed">
+                {currentMessage}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Jivo Chat Widget */}
       <Script 
