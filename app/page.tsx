@@ -146,7 +146,7 @@ export default function PropTradingLanding() {
     // Birinchi matnni ko'rsatish
     setCurrentMessage(getRandomMessage())
 
-    // Har 4 soniyada yangi matn ko'rsatish
+    // Har 25 soniyada yangi matn ko'rsatish
     const messageInterval = setInterval(() => {
       // Fade out animatsiya
       setMessageOpacity(0)
@@ -157,7 +157,7 @@ export default function PropTradingLanding() {
         // Fade in animatsiya
         setMessageOpacity(1)
       }, 300) // 300ms fade out vaqt
-    }, 4000) // 4 soniya interval
+    }, 25000) // 25 soniya interval
 
     return () => {
       clearInterval(messageInterval)
