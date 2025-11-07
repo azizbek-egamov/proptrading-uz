@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import Script from "next/script"
 import { Phone, Play, ChevronDown, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import MobileMenu from "@/components/mobile-menu"
@@ -21,7 +22,6 @@ import ScrollProgress from "@/components/scroll-progress"
 // import ParticlesBackground from "@/components/particles-background"
 import TestimonialCarousel from "@/components/testimonial-carousel"
 import StatsSection from "@/components/stats-section"
-import FloatingCTA from "@/components/floating-cta"
 import ConsistencyGuideSection from "@/components/consistency-guide-section"
 // import InstantLiteSection from "@/components/instant-lite-section" // Removed import for Instant Lite section
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -57,13 +57,14 @@ export default function PropTradingLanding() {
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date().getTime()
-      const targetDate = new Date(now + 24 * 60 * 60 * 1000).getTime() // 24 hours from now
-      const difference = targetDate - now
+      // 14-noyabr 2025, 23:59:59
+      const targetDate = new Date(2025, 10, 14, 23, 59, 59).getTime()
+      const difference = Math.max(0, targetDate - now)
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+      const days = Math.max(0, Math.floor(difference / (1000 * 60 * 60 * 24)))
+      const hours = Math.max(0, Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))
+      const minutes = Math.max(0, Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)))
+      const seconds = Math.max(0, Math.floor((difference % (1000 * 60)) / 1000))
 
       setTimeLeft({ days, hours, minutes, seconds })
     }, 1000)
@@ -514,8 +515,11 @@ export default function PropTradingLanding() {
       {/* Video Modal */}
       <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
 
-      {/* Floating CTA */}
-      <FloatingCTA onPricingClick={() => scrollToSection(pricingRef)} />
+      {/* Jivo Chat Widget */}
+      <Script 
+        src="//code.jivo.ru/widget/uwsXyzIDTA" 
+        strategy="lazyOnload"
+      />
 
       {/* Background Pattern - Enhanced */}
       <div className="fixed inset-0 -z-20">
