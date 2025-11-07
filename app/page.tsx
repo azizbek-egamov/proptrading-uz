@@ -224,9 +224,9 @@ export default function PropTradingLanding() {
                 >
                   <Play className="w-5 h-5 mr-2" /> Prop hisob nima ?
                 </Button>
-                <Link href="/pre-sale">
+                <Link href="/etapli">
                   <Button className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white animate-pulse-glow">
-                    🎁 PRE SALE – AKSIYA
+                    🎁 1+1 AKSIYA
                   </Button>
                 </Link>
               </div>

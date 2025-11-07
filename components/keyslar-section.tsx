@@ -163,7 +163,7 @@ export default function KeyslarSection() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Boshlash uchun kerak:</span>
-                      <span className="text-white font-bold">1,000,000 UZS</span>
+                      <span className="text-white font-bold">910,000 UZS</span>
                     </div>
                   </div>
                 </div>
