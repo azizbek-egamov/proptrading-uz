@@ -12,14 +12,10 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  // Compression optimizatsiyasi
-  compress: true,
-  // Production optimizatsiyasi
-  swcMinify: true,
-  // Bundle optimizatsiyasi
+  compress: true, // Compression optimizatsiyasi
   experimental: {
-    optimizeCss: true,
+    optimizeCss: true, // Bundle optimizatsiyasi
   },
 }
 
-export default nextConfig
+export default nextConfig;
