@@ -13,9 +13,6 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   compress: true, // Compression optimizatsiyasi
-  experimental: {
-    optimizeCss: true, // Bundle optimizatsiyasi
-  },
 }
 
 export default nextConfig;
