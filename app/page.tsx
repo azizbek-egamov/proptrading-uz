@@ -2,29 +2,29 @@
 
 import type React from "react"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
 import { Phone, Play, ChevronDown, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import MobileMenu from "@/components/mobile-menu"
-import HowItWorksSection from "@/components/how-it-works-section"
-import ProcessStepsSection from "@/components/process-steps-section"
-import SocialProofSection from "@/components/social-proof-section"
-import PartnersSection from "@/components/partners-section"
-import ShartlarSection from "@/components/shartlar-section"
-import KeyslarSection from "@/components/keyslar-section"
-import AloqaSection from "@/components/aloqa-section"
-import Footer from "@/components/footer"
-import VideoModal from "@/components/video-modal"
 import ScrollProgress from "@/components/scroll-progress"
-// import ParticlesBackground from "@/components/particles-background"
-import TestimonialCarousel from "@/components/testimonial-carousel"
-import StatsSection from "@/components/stats-section"
-import ConsistencyGuideSection from "@/components/consistency-guide-section"
-// import InstantLiteSection from "@/components/instant-lite-section" // Removed import for Instant Lite section
 import { useIsMobile } from "@/hooks/use-mobile"
+
+// Lazy load katta komponentlar - faqat kerak bo'lganda yuklanadi
+const HowItWorksSection = lazy(() => import("@/components/how-it-works-section"))
+const ProcessStepsSection = lazy(() => import("@/components/process-steps-section"))
+const SocialProofSection = lazy(() => import("@/components/social-proof-section"))
+const PartnersSection = lazy(() => import("@/components/partners-section"))
+const ShartlarSection = lazy(() => import("@/components/shartlar-section"))
+const KeyslarSection = lazy(() => import("@/components/keyslar-section"))
+const AloqaSection = lazy(() => import("@/components/aloqa-section"))
+const Footer = lazy(() => import("@/components/footer"))
+const VideoModal = lazy(() => import("@/components/video-modal"))
+const TestimonialCarousel = lazy(() => import("@/components/testimonial-carousel"))
+const StatsSection = lazy(() => import("@/components/stats-section"))
+const ConsistencyGuideSection = lazy(() => import("@/components/consistency-guide-section"))
 
 // Matnlar JSON formatda
 const messages = [
@@ -114,12 +114,20 @@ export default function PropTradingLanding() {
       setTimeLeft({ days, hours, minutes, seconds })
     }, 1000)
 
+    // Throttle scroll handler - performance optimizatsiyasi
+    let ticking = false
     const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      setIsScrolled(scrollPosition > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY
+          setIsScrolled(scrollPosition > 50)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
 
     return () => {
       clearInterval(timer)
@@ -352,6 +360,8 @@ export default function PropTradingLanding() {
                   height={400}
                   className="w-full h-auto object-contain img-hero hover-scale"
                   priority
+                  loading="eager"
+                  quality={85}
                 />
                 {/* Enhanced Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-3xl -z-10 scale-110"></div>
@@ -548,50 +558,74 @@ export default function PropTradingLanding() {
       </section>
 
       {/* Consistency Guide Section */}
-      <ConsistencyGuideSection />
+      <Suspense fallback={<div className="min-h-[400px]" />}>
+        <ConsistencyGuideSection />
+      </Suspense>
 
       {/* How It Works Section */}
-      <HowItWorksSection />
+      <Suspense fallback={<div className="min-h-[400px]" />}>
+        <HowItWorksSection />
+      </Suspense>
 
       {/* Process Steps Section */}
-      <ProcessStepsSection />
+      <Suspense fallback={<div className="min-h-[400px]" />}>
+        <ProcessStepsSection />
+      </Suspense>
 
       {/* Social Proof Section */}
-      <SocialProofSection />
+      <Suspense fallback={<div className="min-h-[400px]" />}>
+        <SocialProofSection />
+      </Suspense>
 
       {/* Partners Section */}
-      <PartnersSection />
+      <Suspense fallback={<div className="min-h-[200px]" />}>
+        <PartnersSection />
+      </Suspense>
 
       {/* Stats Section */}
-      <StatsSection />
+      <Suspense fallback={<div className="min-h-[300px]" />}>
+        <StatsSection />
+      </Suspense>
 
       {/* Testimonial Carousel */}
-      <TestimonialCarousel />
+      <Suspense fallback={<div className="min-h-[400px]" />}>
+        <TestimonialCarousel />
+      </Suspense>
 
       {/* Shartlar Section */}
       <div ref={shartlarRef}>
-        <ShartlarSection />
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <ShartlarSection />
+        </Suspense>
       </div>
 
       {/* Keyslar Section */}
       <div ref={keyslarRef}>
-        <KeyslarSection />
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <KeyslarSection />
+        </Suspense>
       </div>
 
       {/* Aloqa Section */}
       <div ref={aloqaRef}>
-        <AloqaSection />
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <AloqaSection />
+        </Suspense>
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Suspense fallback={<div className="min-h-[200px]" />}>
+        <Footer />
+      </Suspense>
 
       {/* Video Modal */}
-      <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
+      <Suspense fallback={null}>
+        <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
+      </Suspense>
 
       {/* Random Messages - Chap pastki burchak */}
       {currentMessage && (
-        <div className="fixed bottom-24 md:bottom-6 left-4 md:left-6 z-40 max-w-[calc(100vw-8rem)] md:max-w-sm lg:max-w-md">
+        <div className="fixed bottom-6 left-4 md:left-6 z-40 max-w-[calc(100vw-8rem)] md:max-w-sm lg:max-w-md">
           <div
             className="bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-md rounded-lg px-3 py-2 md:px-4 md:py-3 shadow-2xl border border-blue-400/30"
             style={{
