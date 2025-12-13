@@ -6,11 +6,14 @@ import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
-import { Phone, Play, ChevronDown, ArrowRight } from "lucide-react"
+import { Phone, Play, ChevronDown, ArrowRight, CheckCircle, DollarSign, TrendingUp, Clock, Shield, Target } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import MobileMenu from "@/components/mobile-menu"
 import ScrollProgress from "@/components/scroll-progress"
 import { useIsMobile } from "@/hooks/use-mobile"
+import PurchaseModal from "@/components/purchase-modal"
+import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
 
 // Lazy load katta komponentlar - faqat kerak bo'lganda yuklanadi
 const HowItWorksSection = lazy(() => import("@/components/how-it-works-section"))
@@ -166,43 +169,276 @@ export default function PropTradingLanding() {
 
   const formatTime = (time: number) => time.toString().padStart(2, "0")
 
-  const pricingCards = [
+  // Imtihonli Proplar tariflari
+  const etapliPricingOptions = [
     {
-      title: "Imtihonli Proplar",
-      subtitle: "(etapli) Aksiya 1+1",
-      description: "Imtihonli challenge prop hisoblar. 10% target bilan, 4% kunlik va 6% umumiy zarar chegarasi.",
+      title: "MINI",
+      price: "2 500$",
+      price_uzs: "350 000 UZS",
+      oldPrice: "370 000 UZS",
       features: [
-        "10% Target talab qilinadi",
-        "4% kunlik zarar chegarasi",
-        "6% umumiy zarar chegarasi",
-        "70-80% profit share",
+        "kunlik zarar miqdori 4% - (100$) dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% - (150$) dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+        "70% - 80% qilingan daromaddan olinadigan ulush",
       ],
-      priceRange: "350,000 - 6,450,000 UZS",
-      link: "/etapli",
-      color: "from-blue-600 to-purple-600",
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Matchtrade | Metatrader 4/5",
+      featured: false,
+      category: "Imtihonli Proplar",
+    },
+    {
+      title: "START",
+      price: "5 000$",
+      price_uzs: "600 000 UZS",
+      oldPrice: "650 000 UZS",
+      features: [
+        "kunlik zarar miqdori 4% - (200$) dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% - (300$) dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+        "70% - 80% qilingan daromaddan olinadigan ulush",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Metatrader 4/5",
+      featured: false,
+      category: "Imtihonli Proplar",
+    },
+    {
+      title: "START",
+      price: "10 000$",
+      price_uzs: "910 000 UZS",
+      oldPrice: "990 000 UZS",
+      features: [
+        "kunlik zarar miqdori 4% - (400$) dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% - (600$) dan oshmasligi lozim",
+        "10% target (1000$ foyda qilish lozim)",
+        "70% - 80% qilingan daromaddan olinadigan ulush",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Matchtrade | Metatrader 4/5",
       featured: true,
+      category: "Imtihonli Proplar",
     },
     {
-      title: "Imtihonsiz - Real proplar",
-      subtitle: "(yangi mahsulot)",
-      description: "Eng qulay shartlar bilan. 2% kunlik, 4% umumiy zarar va cheklanmagan target.",
-      features: ["Cheklanmagan target", "2% kunlik zarar", "4% umumiy zarar", "80% profit share"],
-      priceRange: "500,000 - 10,000,000 UZS",
-      link: "/instant-lite",
-      color: "from-purple-600 to-pink-600",
-      featured: false,
+      title: "STANDART",
+      price: "25 000$",
+      price_uzs: "1 800 000 UZS",
+      oldPrice: "1 970 000 UZS",
+      features: [
+        "kunlik zarar miqdori 4% - (1000$) dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% - (1500$) dan oshmasligi lozim",
+        "10% target (2500$ foyda qilish lozim)",
+        "70% - 80% qilingan daromaddan olinadigan ulush",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Matchtrade | Metatrader 4/5",
+      featured: true,
+      category: "Imtihonli Proplar",
     },
     {
-      title: "Premium Proplar",
-      subtitle: "(tayyor akkauntlar)",
-      description: "Imtihondan o'tilgan tayyor hisoblar. Target yo'q, faqat 8% umumiy zarar chegarasi.",
-      features: ["Target yo'q", "8% umumiy zarar chegarasi", "Kunlik limit yo'q", "80% profit share"],
-      priceRange: "580,000 - 10,000,000 UZS",
-      link: "/imtihonsiz",
-      color: "from-green-600 to-blue-600",
+      title: "OMMAVIY",
+      price: "50 000$",
+      price_uzs: "3 800 000 UZS",
+      oldPrice: "4 000 000 UZS",
+      features: [
+        "kunlik zarar miqdori 4% - (2000$) dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% - (3000$) dan oshmasligi lozim",
+        "10% target (5000$ foyda qilish lozim)",
+        "70% - 80% qilingan daromaddan olinadigan ulush",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Matchtrade | Metatrader 4/5",
       featured: false,
+      category: "Imtihonli Proplar",
+    },
+    {
+      title: "PREMIUM",
+      price: "100 000$",
+      price_uzs: "6 450 000 UZS",
+      oldPrice: "6 500 000 UZS",
+      features: [
+        "kunlik zarar miqdori 4% - (4000$) dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% - (6000$) dan oshmasligi lozim",
+        "10% target (10 000$ foyda qilish lozim)",
+        "70% - 80% qilingan daromaddan olinadigan ulush",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Metatrader 4/5",
+      featured: true,
+      category: "Imtihonli Proplar",
     },
   ]
+
+  // Imtihonsiz - Real proplar tariflari
+  const instantLiteAccounts = [
+    {
+      title: "Instant Lite",
+      price: "$1,250",
+      price_uzs: "500,000 UZS",
+      dailyLoss: "2% ($25)",
+      totalLoss: "4% ($50)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "Instant Lite",
+      price: "$2,500",
+      price_uzs: "750,000 UZS",
+      dailyLoss: "2% ($50)",
+      totalLoss: "4% ($100)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "Instant Lite",
+      price: "$5,000",
+      price_uzs: "1,150,000 UZS",
+      dailyLoss: "2% ($100)",
+      totalLoss: "4% ($200)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "Instant Lite",
+      price: "$10,000",
+      price_uzs: "1,750,000 UZS",
+      dailyLoss: "2% ($200)",
+      totalLoss: "4% ($4,000)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "Instant Lite",
+      price: "$25,000",
+      price_uzs: "2,550,000 UZS",
+      dailyLoss: "2% ($500)",
+      totalLoss: "4% ($1,000)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "Instant Lite",
+      price: "$50,000",
+      price_uzs: "5,000,000 UZS",
+      dailyLoss: "2% ($1,000)",
+      totalLoss: "4% ($2,000)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "Instant Lite",
+      price: "$100,000",
+      price_uzs: "10,000,000 UZS",
+      dailyLoss: "2% ($2,000)",
+      totalLoss: "4% ($4,000)",
+      featured: false,
+      category: "Imtihonsiz - Real proplar",
+    },
+  ]
+
+  // Premium Proplar tariflari
+  const fundedAccounts = [
+    {
+      title: "MINI",
+      price: "1 000$",
+      price_uzs: "1 100 000 UZS",
+      features: [
+        "8% umumiy yo'qotish bo'lmasligi lozim!",
+        "Yo'q - target (foyda chegarasi yo'q)",
+        "80% gacha qilingan daromaddan olinadigan ulushingiz",
+      ],
+      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
+      platform: "Ctrader",
+      featured: false,
+      category: "Premium Proplar",
+    },
+    {
+      title: "MINI",
+      price: "2 500$",
+      price_uzs: "1 800 000 UZS",
+      features: [
+        "8% umumiy yo'qotish bo'lmasligi lozim!",
+        "Yo'q - target (foyda chegarasi yo'q)",
+        "80% gacha qilingan daromaddan olinadigan ulushingiz",
+      ],
+      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
+      platform: "Metatrader 5",
+      featured: false,
+      category: "Premium Proplar",
+    },
+    {
+      title: "START+",
+      price: "5 000$",
+      price_uzs: "3 300 000 UZS",
+      features: [
+        "8% umumiy yo'qotish bo'lmasligi lozim!",
+        "Yo'q - target (foyda chegarasi yo'q)",
+        "80% gacha qilingan daromaddan olinadigan ulushingiz",
+      ],
+      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
+      platform: "Ctrader",
+      featured: true,
+      category: "Premium Proplar",
+    },
+    {
+      title: "START+",
+      price: "10 000$",
+      price_uzs: "6 000 000 UZS",
+      features: [
+        "8% umumiy yo'qotish bo'lmasligi lozim!",
+        "Yo'q - target (foyda chegarasi yo'q)",
+        "80% gacha qilingan daromaddan olinadigan ulushingiz",
+      ],
+      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
+      platform: "Metatrader 5",
+      featured: false,
+      category: "Premium Proplar",
+    },
+    {
+      title: "MEDIUM",
+      price: "25 000$",
+      price_uzs: "12 000 000 UZS",
+      features: [
+        "8% umumiy yo'qotish bo'lmasligi lozim!",
+        "Yo'q - target (foyda chegarasi yo'q)",
+        "80% gacha qilingan daromaddan olinadigan ulushingiz",
+      ],
+      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
+      platform: "Metatrader 5",
+      featured: true,
+      category: "Premium Proplar",
+    },
+    {
+      title: "PREMIUM",
+      price: "50 000$",
+      price_uzs: "23 000 000 UZS",
+      features: [
+        "8% umumiy yo'qotish bo'lmasligi lozim!",
+        "Yo'q - target (foyda chegarasi yo'q)",
+        "80% gacha qilingan daromaddan olinadigan ulushingiz",
+      ],
+      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
+      platform: "Metatrader 5",
+      featured: false,
+      category: "Premium Proplar",
+    },
+  ]
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedAccount, setSelectedAccount] = useState({
+    title: "",
+    price: "",
+    amount: "",
+  })
+
+  const handleOpenModal = (title: string, price: string, amount: string) => {
+    setSelectedAccount({
+      title,
+      price,
+      amount,
+    })
+    setModalOpen(true)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
@@ -306,11 +542,6 @@ export default function PropTradingLanding() {
                 >
                   <Play className="w-5 h-5 mr-2" /> Prop hisob nima ?
                 </Button>
-                <Link href="/etapli">
-                  <Button className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white animate-pulse-glow">
-                    🎁 1+1 AKSIYA
-                  </Button>
-                </Link>
               </div>
 
               {/* Countdown Timer */}
@@ -493,66 +724,375 @@ export default function PropTradingLanding() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {pricingCards.map((card, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up ${
-                  card.featured
-                    ? `bg-gradient-to-br ${card.color} text-white transform scale-105 border-2 border-blue-400 shadow-lg`
-                    : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow"
-                }`}
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                {card.featured && (
-                  <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
-                    Mashhur!
-                  </span>
-                )}
-
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">{card.title}</h3>
-                  <p className={`text-sm ${card.featured ? "text-blue-100" : "text-gray-400"}`}>{card.subtitle}</p>
-                </div>
-
-                <p className={`text-sm mb-6 flex-grow ${card.featured ? "text-white" : "text-gray-300"}`}>
-                  {card.description}
-                </p>
-
-                <div className="space-y-3 mb-6">
-                  {card.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-2">
-                      <div className={`w-2 h-2 rounded-full ${card.featured ? "bg-white/60" : "bg-blue-500"}`}></div>
-                      <span className={`text-sm ${card.featured ? "text-white" : "text-gray-300"}`}>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="text-center mb-6">
-                  <div className={`font-semibold text-sm mb-1 ${card.featured ? "text-blue-100" : "text-blue-500"}`}>
-                    NARX ORALIG'I:
-                  </div>
-                  <div className={`text-lg font-bold ${card.featured ? "text-white" : "text-blue-400"}`}>
-                    {card.priceRange}
-                  </div>
-                </div>
-
-                <Link href={card.link}>
-                  <Button
-                    className={`w-full py-3 rounded-full font-semibold hover-lift ${
-                      card.featured
-                        ? "bg-white text-blue-600 hover:bg-gray-100"
-                        : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                    }`}
-                  >
-                    <span className="flex items-center justify-center space-x-2">
-                      <span>Tariflarni ko'rish</span>
-                      <ArrowRight className="w-4 h-4" />
+          {/* Imtihonli Proplar */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-blue-400">Imtihonli Proplar</h3>
+            <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-8 text-center">
+              Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, hisobni nomingizga olib berish,
+              sizga ulab berish va unda savdo qilib berish ichiga kiritilgan!
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {etapliPricingOptions.map((option, index) => (
+                <div
+                  key={`etapli-${index}`}
+                  className={cn(
+                    "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up",
+                    option.featured
+                      ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
+                      : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
+                  )}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {option.featured && (
+                    <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
+                      Tavsiya etiladi!
                     </span>
+                  )}
+                  <div className="text-center mb-6">
+                    <div
+                      className={cn(
+                        "text-sm font-semibold uppercase tracking-wider mb-2",
+                        option.featured ? "text-blue-100" : "text-gray-400",
+                      )}
+                    >
+                      {option.title}
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold mb-4">{option.price}</div>
+                  </div>
+
+                  <div className="space-y-4 mb-8 flex-grow">
+                    {option.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start space-x-3">
+                        <div
+                          className={cn(
+                            "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
+                            option.featured ? "bg-white/20" : "bg-blue-500",
+                          )}
+                        >
+                          <CheckCircle className="w-3 h-3 text-white" />
+                        </div>
+                        <div className={cn("text-sm", option.featured ? "text-white" : "text-gray-300")}>
+                          {feature}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-center mb-6">
+                    {option.oldPrice && (
+                      <div className={cn("line-through text-lg", option.featured ? "text-red-300" : "text-red-500")}>
+                        {option.oldPrice}
+                      </div>
+                    )}
+                    <div
+                      className={cn("font-semibold text-sm mb-1", option.featured ? "text-blue-100" : "text-blue-500")}
+                    >
+                      NARXI:
+                    </div>
+                    <div className={cn("text-2xl font-bold", option.featured ? "text-white" : "text-red-500")}>
+                      {option.price_uzs}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-4">
+                    <div className="flex items-start space-x-3">
+                      <div
+                        className={cn(
+                          "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
+                          option.featured ? "bg-white/20" : "bg-blue-500",
+                        )}
+                      >
+                        <DollarSign className="w-3 h-3 text-white" />
+                      </div>
+                      <div className={cn("text-sm", option.featured ? "text-white" : "text-gray-300")}>
+                        <strong>Yechib olish: </strong>
+                        {option.withdrawal}
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <div
+                        className={cn(
+                          "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
+                          option.featured ? "bg-white/20" : "bg-blue-500",
+                        )}
+                      >
+                        <TrendingUp className="w-3 h-3 text-white" />
+                      </div>
+                      <div className={cn("text-sm", option.featured ? "text-white" : "text-gray-300")}>
+                        <strong>Savdo platformasi: </strong>
+                        {option.platform}
+                      </div>
+                    </div>
+                  </div>
+
+                  <Button
+                    className={cn(
+                      "w-full py-3 rounded-full font-semibold hover-lift",
+                      option.featured
+                        ? "bg-white text-blue-600 hover:bg-gray-100"
+                        : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
+                    )}
+                    onClick={() => handleOpenModal(option.title, option.price_uzs, option.price)}
+                  >
+                    Prop hisobni sotib olish!
                   </Button>
-                </Link>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12 space-y-4">
+              <p className="text-gray-400 text-sm max-w-4xl mx-auto">
+                Barcha hisoblarni 10 daqiqa ichida rasmiylashtirlib sizga tezkor servis ko'rsatamiz! Karta orqali to'lov
+                qilasiz va yopiq guruhimiz a zosi hamda prop hisob egasi bo'lasiz va biz hisobingizda savdo jarayonlarini
+                boshlaymiz, natija qo'l ostingizda bo'ladi (
+                <span className="text-blue-400">barcha ma'lumotlar sizga taqdim etiladi 100%</span>) -
+              </p>
+              <p className="text-red-400 text-sm max-w-4xl mx-auto">
+                Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 3% kunlik 6% umumiy miqdorda
+                minus qilinsа kontrakt bekor qilinadi va prop hisob bloklandi va bu holatda javobgarlik u yoki bu shaxs
+                zimmasiga yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
+              </p>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-16 flex items-center justify-center">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+            <div className="mx-4 w-2 h-2 rounded-full bg-blue-500"></div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+          </div>
+
+          {/* Imtihonsiz - Real proplar */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">Yangi Mahsulot</Badge>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-purple-400">
+                Imtihonsiz - Real proplar
+              </h3>
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                Eng qulay shartlar bilan prop trading hisoblariga ega bo'ling. Tezkor boshlash va yuqori daromad imkoniyati.
+              </p>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              <div className="card-gradient p-6 text-center hover-lift">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4 text-purple-400">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Cheklanmagan Target</h3>
+                <p className="text-sm text-gray-300">Foyda qilish miqdori cheklanmagan</p>
               </div>
-            ))}
+              <div className="card-gradient p-6 text-center hover-lift">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4 text-purple-400">
+                  <DollarSign className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">80% Profit Share</h3>
+                <p className="text-sm text-gray-300">Qilingan daromaddan 80% ulush</p>
+              </div>
+              <div className="card-gradient p-6 text-center hover-lift">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4 text-purple-400">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">14 Kundan So'ng</h3>
+                <p className="text-sm text-gray-300">Yechib olish imkoniyati</p>
+              </div>
+              <div className="card-gradient p-6 text-center hover-lift">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4 text-purple-400">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Xavfsiz Platform</h3>
+                <p className="text-sm text-gray-300">MT4/5, TradeLocker, DXtrade</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {instantLiteAccounts.map((account, index) => (
+                <div
+                  key={`instant-${index}`}
+                  className={cn(
+                    "rounded-2xl p-6 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-purple-500/30",
+                  )}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">{account.price}</h3>
+                    <div className="text-3xl font-bold mb-1 text-purple-400">{account.price_uzs}</div>
+                    <p className="text-sm text-gray-400">Bir martalik to'lov</p>
+                  </div>
+
+                  <div className="space-y-3 mb-6 flex-grow">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Kunlik zarar:</span>
+                      <span className="text-white font-medium">{account.dailyLoss}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Umumiy zarar:</span>
+                      <span className="text-white font-medium">{account.totalLoss}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Profit Share:</span>
+                      <span className="text-green-400 font-medium">80%</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Target:</span>
+                      <span className="text-blue-400 font-medium">Cheklanmagan</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    onClick={() => handleOpenModal("Imtihonsiz - Real prop", account.price_uzs, account.price)}
+                    className="w-full mt-auto btn-gradient"
+                  >
+                    Hoziroq Sotib Olish
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-16 flex items-center justify-center">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+            <div className="mx-4 w-2 h-2 rounded-full bg-purple-500"></div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+          </div>
+
+          {/* Premium Proplar */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-green-400">Premium Proplar</h3>
+            <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-8 text-center">
+              Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, kuchli signal beruvchi bitta
+              indikator, hisobni nomingizga olib berish va pul yechish jarayonlarida ko'maklashish kiritilgan!
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {fundedAccounts.map((account, index) => (
+                <div
+                  key={`premium-${index}`}
+                  className={cn(
+                    "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up",
+                    account.featured
+                      ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
+                      : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
+                  )}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {account.featured && (
+                    <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
+                      Tavsiya etiladi!
+                    </span>
+                  )}
+                  <div className="text-center mb-6">
+                    <div
+                      className={cn(
+                        "text-sm font-semibold uppercase tracking-wider mb-2",
+                        account.featured ? "text-blue-100" : "text-gray-400",
+                      )}
+                    >
+                      {account.title}
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold mb-4">{account.price}</div>
+                    <div className="w-12 h-0.5 bg-blue-500 mx-auto"></div>
+                  </div>
+
+                  <div className="space-y-4 mb-8 flex-grow">
+                    {account.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start space-x-3">
+                        <div
+                          className={cn(
+                            "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
+                            account.featured ? "bg-white/20" : "bg-blue-500",
+                          )}
+                        >
+                          <CheckCircle className="w-3 h-3 text-white" />
+                        </div>
+                        <div className="text-sm">{feature}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-center mb-6">
+                    <div
+                      className={cn("font-semibold text-sm mb-1", account.featured ? "text-blue-100" : "text-blue-500")}
+                    >
+                      NARXI:
+                    </div>
+                    <div className={cn("text-2xl font-bold", account.featured ? "text-white" : "text-red-500")}>
+                      {account.price_uzs}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-start space-x-3">
+                      <div
+                        className={cn(
+                          "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
+                          account.featured ? "bg-white/20" : "bg-blue-500",
+                        )}
+                      >
+                        <DollarSign className="w-3 h-3 text-white" />
+                      </div>
+                      <div className="text-sm">
+                        <strong>Yechib olish: </strong>
+                        {account.withdrawal}
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <div
+                        className={cn(
+                          "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
+                          account.featured ? "bg-white/20" : "bg-blue-500",
+                        )}
+                      >
+                        <TrendingUp className="w-3 h-3 text-white" />
+                      </div>
+                      <div className="text-sm">
+                        <strong>Savdo platformasi: </strong>
+                        {account.platform}
+                      </div>
+                    </div>
+                  </div>
+
+                  <Button
+                    className={cn(
+                      "w-full py-3 rounded-full font-semibold mb-4",
+                      account.featured
+                        ? "bg-white text-blue-600 hover:bg-gray-100"
+                        : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
+                    )}
+                    onClick={() => handleOpenModal(account.title, account.price_uzs, account.price)}
+                  >
+                    Prop hisobni sotib olish!
+                  </Button>
+
+                  <div className="text-center">
+                    <h4 className={cn("font-bold text-sm", account.featured ? "text-white" : "text-yellow-400")}>
+                      SIGNAL BERUVCHI
+                      <br />
+                      INDIKATOR SOVG'A 🎁
+                    </h4>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12 space-y-4">
+              <p className="text-gray-400 text-sm max-w-4xl mx-auto">
+                <strong>Barcha hisoblarni 10 daqiqa ichida rasmiylashtirib sizga tezkor servis ko'rsatamiz!</strong>
+                Karta orqali to'lov qilasiz va yopiq guruhimiz a'zosi hamda prop hisob egasi bo'lasiz va biz hisobingizda
+                savdo jarayonlarini boshlaymiz, natija qo'l ostingizda bo'ladi{" "}
+                <span className="text-blue-400">(barcha ma'lumotlar sizga taqdim etiladi 100%) -</span>
+              </p>
+              <p className="text-red-400 text-sm max-w-4xl mx-auto">
+                <strong>
+                  Imtihonsiz real prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar umumiy miqdorda 8% minus qilinsa
+                  kontrakt bekor qilinadi va prop hisob bloklanadi va bu holatda javobgarlik u yoki bu shaxs zimmasiga
+                  yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
+                </strong>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -622,6 +1162,15 @@ export default function PropTradingLanding() {
       <Suspense fallback={null}>
         <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
       </Suspense>
+
+      {/* Purchase Modal */}
+      <PurchaseModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        accountTitle={selectedAccount.title}
+        accountPrice={selectedAccount.price}
+        accountAmount={selectedAccount.amount}
+      />
 
       {/* Random Messages - Chap pastki burchak */}
       {currentMessage && (

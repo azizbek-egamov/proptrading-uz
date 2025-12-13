@@ -146,7 +146,7 @@ export default function EtapliPricingPage() {
 
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-fade-in-up">
-            Imtihonli Proplar <span className="text-gray-400">(etapli) Aksiya 1+1</span>
+            Imtihonli Proplar
           </h1>
           <p className="text-lg text-gray-400 max-w-4xl mx-auto animate-fade-in-up animate-delay-200">
             Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, hisobni nomingizga olib berish,
