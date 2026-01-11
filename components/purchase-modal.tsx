@@ -32,6 +32,22 @@ export default function PurchaseModal({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [currentStep, setCurrentStep] = useState<"form" | "payment">("form")
+  const [selectedCard, setSelectedCard] = useState<"uzcard" | "visa">("uzcard")
+
+  const cardData = {
+    uzcard: {
+      number: "8600 1204 1840 9390",
+      raw: "8600120418409390",
+      name: "UzCard",
+      color: "from-blue-600 to-cyan-600"
+    },
+    visa: {
+      number: "4998 9300 0743 1657",
+      raw: "4998930007431657",
+      name: "Visa",
+      color: "from-purple-600 to-pink-600"
+    }
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -96,8 +112,7 @@ export default function PurchaseModal({
       formDataToSend.append("accountType", `${accountTitle} ${accountAmount} - ${accountPrice}`)
       formDataToSend.append(
         "message",
-        `Manzil: ${formData.address}\nEmail: ${formData.email}\nSavdo turi: ${
-          formData.tradeOption === "self" ? "O'zim savdo qilaman" : "Jamoangiz bilan birga savdo qilish istagim bor"
+        `Manzil: ${formData.address}\nEmail: ${formData.email}\nSavdo turi: ${formData.tradeOption === "self" ? "O'zim savdo qilaman" : "Jamoangiz bilan birga savdo qilish istagim bor"
         }`,
       )
       formDataToSend.append("paymentReceipt", paymentReceipt)
@@ -144,7 +159,7 @@ export default function PurchaseModal({
 
   const copyCardNumber = async () => {
     try {
-      await navigator.clipboard.writeText("8600120418409390")
+      await navigator.clipboard.writeText(cardData[selectedCard].raw)
       alert("Karta raqami nusxalandi!")
     } catch (err) {
       console.error("Failed to copy: ", err)
@@ -291,18 +306,50 @@ export default function PurchaseModal({
                 </form>
               ) : (
                 <form onSubmit={handlePaymentSubmit} className="space-y-4 md:space-y-5">
-                  <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-xl p-3 md:p-4 border border-green-500/30">
+                  {/* Karta tanlash */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCard("uzcard")}
+                      className={`p-3 rounded-xl border-2 transition-all duration-300 ${selectedCard === "uzcard"
+                          ? "border-blue-500 bg-blue-500/20"
+                          : "border-gray-600 bg-gray-800/50 hover:border-gray-500"
+                        }`}
+                    >
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-blue-400 mb-1">💳 UzCard</div>
+                        <div className="text-xs text-gray-400">O'zbekiston kartasi</div>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCard("visa")}
+                      className={`p-3 rounded-xl border-2 transition-all duration-300 ${selectedCard === "visa"
+                          ? "border-purple-500 bg-purple-500/20"
+                          : "border-gray-600 bg-gray-800/50 hover:border-gray-500"
+                        }`}
+                    >
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-purple-400 mb-1">💎 Visa</div>
+                        <div className="text-xs text-gray-400">Xalqaro karta</div>
+                      </div>
+                    </button>
+                  </div>
+
+                  <div className={`bg-gradient-to-r ${selectedCard === "uzcard" ? "from-blue-600/20 to-cyan-600/20 border-blue-500/30" : "from-purple-600/20 to-pink-600/20 border-purple-500/30"} rounded-xl p-3 md:p-4 border`}>
                     <div className="flex items-center space-x-2 md:space-x-3 mb-2 md:mb-3">
-                      <CreditCard className="w-4 h-4 md:w-5 md:h-5 text-green-400" />
-                      <h3 className="text-base md:text-lg font-semibold text-white">To'lov ma'lumotlari</h3>
+                      <CreditCard className={`w-4 h-4 md:w-5 md:h-5 ${selectedCard === "uzcard" ? "text-blue-400" : "text-purple-400"}`} />
+                      <h3 className="text-base md:text-lg font-semibold text-white">
+                        {cardData[selectedCard].name} orqali to'lov
+                      </h3>
                     </div>
 
                     <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl p-3 md:p-4 border border-gray-700 shadow-2xl">
-                      <div className="text-xs text-gray-400 mb-1 md:mb-2">S/N</div>
+                      <div className="text-xs text-gray-400 mb-1 md:mb-2">Karta raqami</div>
                       <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0">
                           <div className="text-sm md:text-lg lg:text-xl font-mono text-white tracking-wide md:tracking-wider font-bold whitespace-nowrap overflow-hidden">
-                            8600 1204 1840 9390
+                            {cardData[selectedCard].number}
                           </div>
                         </div>
                         <Button

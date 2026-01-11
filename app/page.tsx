@@ -31,45 +31,45 @@ const ConsistencyGuideSection = lazy(() => import("@/components/consistency-guid
 
 // Matnlar JSON formatda
 const messages = [
-    "Islom 5 000$lik hisobdan 237$ yechdi.",
-    "Anvar 25 000$lik hisob xarid qildi!",
-    "Laylo 10 000$ challenge'ni muvaffaqiyatli yakunladi — bonus olindi.",
-    "Jamshid 2 000$ bilan 1 200$ foyda chiqardi.",
-    "Sardor VIP ga o'tib, 50% imtiyoz oldi.",
-    "Nilufar 1 500$dan 300$ yechdi — chiqish muvaffaqiyatli.",
-    "Bek 50 000$lik prop'ni sotib oldi — welcome aboard!",
-    "Malika Start paketini oldi — o'qish boshlandi.",
-    "Farhod 7 kun ichida 18% ROI ko'rsatdi.",
-    "Shoxrux 3,200$ balansni 740$ ga ko'paytirdi.",
-    "Diyor 10 000$ challenge'ni PASS qildi — real account ochildi.",
-    "Saida profitni yechib, 420$ olindi.",
-    "Odil demo'dan realga o'tdi — tabrik!",
-    "Yusuf 25$ depozit qildi — start olindi.",
-    "Nil 15 000$ hisobni sotib oldi — level up.",
-    "Aziza 2 ta pullik modulni sotib oldi — bilim +1.",
-    "Kamol 5 000$ challenge'dan 500$ yechdi — nice.",
-    "Alisher PRO paket + prop application yubordi.",
-    "Shirin 900$ foyda olib, hisobni yechdi.",
-    "Javlon 30-kun ichida 12% konsistensiya ko'rsatdi.",
-    "Zebo VIP-kanalga obuna bo'ldi — premium signals.",
-    "Umid 50$ depozit olib test boshladi.",
-    "Nodir 100% pass — prop'ga yo'l ochildi.",
-    "Lola 1,000$ bilan 150$ foyda oldi.",
-    "Mirzam 20 000$ hisobni sotib oldi — big move.",
-    "Saodat challenge'dan 0% drawdown bilan o'tdi.",
-    "Aziz 3 ta kun ichida 2x growth — shunchaki ajoyib.",
-    "Shahnoza 2,500$ yechdi — balans yangilandi.",
-    "Orif 10 000$ hisobni qayta aktiv qildi.",
-    "Dilshod PRO robotni xarid qildi — avtomatik scalping.",
-    "Feruza copy-trade funksiyasini yoqdi — follower+1.",
-    "Botir 400$ profitni yechib, tashrif buyurdi.",
-    "Nodira 5 kun ichida 7% growth — konsistensiya yaxshi.",
-    "Qodir 12 000$ challenge'ni olgan — imkoniyat katta.",
-    "Maftuna 250$ depozit qilib, demo'dan realga o'tdi.",
-    "Ikrom 800$ profit bilan hisobni yechdi.",
-    "Sherzod VIP-mentor bilan 1:1 sessiya oldi.",
-    "Dilbar 3-kurs modulini tugatdi — sertifikat tayyor.",
-    "Ravshan 15 000$ accountni qayta sotib oldi.",
+  "Islom 5 000$lik hisobdan 237$ yechdi.",
+  "Anvar 25 000$lik hisob xarid qildi!",
+  "Laylo 10 000$ challenge'ni muvaffaqiyatli yakunladi — bonus olindi.",
+  "Jamshid 2 000$ bilan 1 200$ foyda chiqardi.",
+  "Sardor VIP ga o'tib, 50% imtiyoz oldi.",
+  "Nilufar 1 500$dan 300$ yechdi — chiqish muvaffaqiyatli.",
+  "Bek 50 000$lik prop'ni sotib oldi — welcome aboard!",
+  "Malika Start paketini oldi — o'qish boshlandi.",
+  "Farhod 7 kun ichida 18% ROI ko'rsatdi.",
+  "Shoxrux 3,200$ balansni 740$ ga ko'paytirdi.",
+  "Diyor 10 000$ challenge'ni PASS qildi — real account ochildi.",
+  "Saida profitni yechib, 420$ olindi.",
+  "Odil demo'dan realga o'tdi — tabrik!",
+  "Yusuf 25$ depozit qildi — start olindi.",
+  "Nil 15 000$ hisobni sotib oldi — level up.",
+  "Aziza 2 ta pullik modulni sotib oldi — bilim +1.",
+  "Kamol 5 000$ challenge'dan 500$ yechdi — nice.",
+  "Alisher PRO paket + prop application yubordi.",
+  "Shirin 900$ foyda olib, hisobni yechdi.",
+  "Javlon 30-kun ichida 12% konsistensiya ko'rsatdi.",
+  "Zebo VIP-kanalga obuna bo'ldi — premium signals.",
+  "Umid 50$ depozit olib test boshladi.",
+  "Nodir 100% pass — prop'ga yo'l ochildi.",
+  "Lola 1,000$ bilan 150$ foyda oldi.",
+  "Mirzam 20 000$ hisobni sotib oldi — big move.",
+  "Saodat challenge'dan 0% drawdown bilan o'tdi.",
+  "Aziz 3 ta kun ichida 2x growth — shunchaki ajoyib.",
+  "Shahnoza 2,500$ yechdi — balans yangilandi.",
+  "Orif 10 000$ hisobni qayta aktiv qildi.",
+  "Dilshod PRO robotni xarid qildi — avtomatik scalping.",
+  "Feruza copy-trade funksiyasini yoqdi — follower+1.",
+  "Botir 400$ profitni yechib, tashrif buyurdi.",
+  "Nodira 5 kun ichida 7% growth — konsistensiya yaxshi.",
+  "Qodir 12 000$ challenge'ni olgan — imkoniyat katta.",
+  "Maftuna 250$ depozit qilib, demo'dan realga o'tdi.",
+  "Ikrom 800$ profit bilan hisobni yechdi.",
+  "Sherzod VIP-mentor bilan 1:1 sessiya oldi.",
+  "Dilbar 3-kurs modulini tugatdi — sertifikat tayyor.",
+  "Ravshan 15 000$ accountni qayta sotib oldi.",
 ]
 
 export default function PropTradingLanding() {
@@ -153,7 +153,7 @@ export default function PropTradingLanding() {
     const messageInterval = setInterval(() => {
       // Fade out animatsiya
       setMessageOpacity(0)
-      
+
       setTimeout(() => {
         // Yangi random matn
         setCurrentMessage(getRandomMessage())
@@ -172,165 +172,151 @@ export default function PropTradingLanding() {
   // Imtihonli Proplar tariflari
   const etapliPricingOptions = [
     {
-      title: "MINI",
-      price: "2 500$",
-      price_uzs: "350 000 UZS",
-      oldPrice: "370 000 UZS",
+      title: "",
+      price: "15 000$",
+      price_uzs: "1 600 000 UZS",
+      oldPrice: "178$",
       features: [
-        "kunlik zarar miqdori 4% - (100$) dan oshmasligi lozim",
-        "umumiy zarar miqdori 6% - (150$) dan oshmasligi lozim",
+        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
         "10% target (foyda qilish lozim)",
-        "70% - 80% qilingan daromaddan olinadigan ulush",
-      ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
-      platform: "Matchtrade | Metatrader 4/5",
-      featured: false,
-      category: "Imtihonli Proplar",
-    },
-    {
-      title: "START",
-      price: "5 000$",
-      price_uzs: "600 000 UZS",
-      oldPrice: "650 000 UZS",
-      features: [
-        "kunlik zarar miqdori 4% - (200$) dan oshmasligi lozim",
-        "umumiy zarar miqdori 6% - (300$) dan oshmasligi lozim",
-        "10% target (foyda qilish lozim)",
-        "70% - 80% qilingan daromaddan olinadigan ulush",
       ],
       withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
       platform: "Metatrader 4/5",
       featured: false,
-      category: "Imtihonli Proplar",
+      category: "PREMIUM imtihonli hisoblar",
     },
     {
-      title: "START",
-      price: "10 000$",
-      price_uzs: "910 000 UZS",
-      oldPrice: "990 000 UZS",
-      features: [
-        "kunlik zarar miqdori 4% - (400$) dan oshmasligi lozim",
-        "umumiy zarar miqdori 6% - (600$) dan oshmasligi lozim",
-        "10% target (1000$ foyda qilish lozim)",
-        "70% - 80% qilingan daromaddan olinadigan ulush",
-      ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
-      platform: "Matchtrade | Metatrader 4/5",
-      featured: true,
-      category: "Imtihonli Proplar",
-    },
-    {
-      title: "STANDART",
+      title: "",
       price: "25 000$",
-      price_uzs: "1 800 000 UZS",
-      oldPrice: "1 970 000 UZS",
+      price_uzs: "2 500 000 UZS",
+      oldPrice: "248$",
       features: [
-        "kunlik zarar miqdori 4% - (1000$) dan oshmasligi lozim",
-        "umumiy zarar miqdori 6% - (1500$) dan oshmasligi lozim",
-        "10% target (2500$ foyda qilish lozim)",
-        "70% - 80% qilingan daromaddan olinadigan ulush",
+        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
       ],
       withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
-      platform: "Matchtrade | Metatrader 4/5",
-      featured: true,
-      category: "Imtihonli Proplar",
-    },
-    {
-      title: "OMMAVIY",
-      price: "50 000$",
-      price_uzs: "3 800 000 UZS",
-      oldPrice: "4 000 000 UZS",
-      features: [
-        "kunlik zarar miqdori 4% - (2000$) dan oshmasligi lozim",
-        "umumiy zarar miqdori 6% - (3000$) dan oshmasligi lozim",
-        "10% target (5000$ foyda qilish lozim)",
-        "70% - 80% qilingan daromaddan olinadigan ulush",
-      ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
-      platform: "Matchtrade | Metatrader 4/5",
+      platform: "Metatrader 4/5",
       featured: false,
-      category: "Imtihonli Proplar",
+      category: "PREMIUM imtihonli hisoblar",
     },
     {
-      title: "PREMIUM",
-      price: "100 000$",
-      price_uzs: "6 450 000 UZS",
-      oldPrice: "6 500 000 UZS",
+      title: "",
+      price: "50 000$",
+      price_uzs: "4 000 000 UZS",
+      oldPrice: "358$",
       features: [
-        "kunlik zarar miqdori 4% - (4000$) dan oshmasligi lozim",
-        "umumiy zarar miqdori 6% - (6000$) dan oshmasligi lozim",
-        "10% target (10 000$ foyda qilish lozim)",
-        "70% - 80% qilingan daromaddan olinadigan ulush",
+        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
       ],
       withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
       platform: "Metatrader 4/5",
       featured: true,
-      category: "Imtihonli Proplar",
+      category: "PREMIUM imtihonli hisoblar",
+    },
+    {
+      title: "",
+      price: "100 000$",
+      price_uzs: "6 000 000 UZS",
+      oldPrice: "618$",
+      features: [
+        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Metatrader 4/5",
+      featured: true,
+      category: "PREMIUM imtihonli hisoblar",
+    },
+    {
+      title: "",
+      price: "200 000$",
+      price_uzs: "10 000 000 UZS",
+      oldPrice: "1098$",
+      features: [
+        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+      ],
+      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      platform: "Metatrader 4/5",
+      featured: false,
+      category: "PREMIUM imtihonli hisoblar ",
     },
   ]
 
   // Imtihonsiz - Real proplar tariflari
   const instantLiteAccounts = [
     {
-      title: "Instant Lite",
-      price: "$1,250",
-      price_uzs: "500,000 UZS",
-      dailyLoss: "2% ($25)",
-      totalLoss: "4% ($50)",
+      title: "",
+      price: "2 500$",
+      price_uzs: "580 000 UZS",
+      oldPrice: "68$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
       featured: false,
       category: "Imtihonsiz - Real proplar",
     },
     {
-      title: "Instant Lite",
-      price: "$2,500",
-      price_uzs: "750,000 UZS",
-      dailyLoss: "2% ($50)",
-      totalLoss: "4% ($100)",
+      title: "",
+      price: "5 000$",
+      price_uzs: "1 000 000 UZS",
+      oldPrice: "118$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
       featured: false,
       category: "Imtihonsiz - Real proplar",
     },
     {
-      title: "Instant Lite",
-      price: "$5,000",
-      price_uzs: "1,150,000 UZS",
-      dailyLoss: "2% ($100)",
-      totalLoss: "4% ($200)",
+      title: "",
+      price: "10 000$",
+      price_uzs: "1 700 000 UZS",
+      oldPrice: "168$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
       featured: false,
       category: "Imtihonsiz - Real proplar",
     },
     {
-      title: "Instant Lite",
-      price: "$10,000",
-      price_uzs: "1,750,000 UZS",
-      dailyLoss: "2% ($200)",
-      totalLoss: "4% ($4,000)",
+      title: "",
+      price: "15 000$",
+      price_uzs: "2 300 000 UZS",
+      oldPrice: "238$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
       featured: false,
       category: "Imtihonsiz - Real proplar",
     },
     {
-      title: "Instant Lite",
-      price: "$25,000",
-      price_uzs: "2,550,000 UZS",
-      dailyLoss: "2% ($500)",
-      totalLoss: "4% ($1,000)",
+      title: "",
+      price: "25 000$",
+      price_uzs: "3 300 000 UZS",
+      oldPrice: "328$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
+      featured: true,
+      category: "Imtihonsiz - Real proplar",
+    },
+    {
+      title: "",
+      price: "50 000$",
+      price_uzs: "4 900 000 UZS",
+      oldPrice: "498$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
       featured: false,
       category: "Imtihonsiz - Real proplar",
     },
     {
-      title: "Instant Lite",
-      price: "$50,000",
-      price_uzs: "5,000,000 UZS",
-      dailyLoss: "2% ($1,000)",
-      totalLoss: "4% ($2,000)",
-      featured: false,
-      category: "Imtihonsiz - Real proplar",
-    },
-    {
-      title: "Instant Lite",
-      price: "$100,000",
-      price_uzs: "10,000,000 UZS",
-      dailyLoss: "2% ($2,000)",
-      totalLoss: "4% ($4,000)",
+      title: "",
+      price: "100 000$",
+      price_uzs: "9 000 000 UZS",
+      oldPrice: "858$",
+      dailyLoss: "4%",
+      totalLoss: "4%",
       featured: false,
       category: "Imtihonsiz - Real proplar",
     },
@@ -726,17 +712,17 @@ export default function PropTradingLanding() {
 
           {/* Imtihonli Proplar */}
           <div className="mb-16">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-blue-400">Imtihonli Proplar</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-blue-400">PREMIUM imtihonli hisoblar</h3>
             <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-8 text-center">
               Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, hisobni nomingizga olib berish,
               sizga ulab berish va unda savdo qilib berish ichiga kiritilgan!
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
               {etapliPricingOptions.map((option, index) => (
                 <div
                   key={`etapli-${index}`}
                   className={cn(
-                    "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up",
+                    "w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] rounded-2xl p-6 md:p-8 transition-all duration-300 flex flex-col relative hover-lift animate-fade-in-up",
                     option.featured
                       ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
                       : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
@@ -870,9 +856,6 @@ export default function PropTradingLanding() {
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-purple-400">
                 Imtihonsiz - Real proplar
               </h3>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                Eng qulay shartlar bilan prop trading hisoblariga ega bo'ling. Tezkor boshlash va yuqori daromad imkoniyati.
-              </p>
             </div>
 
             {/* Features Grid */}
@@ -895,7 +878,7 @@ export default function PropTradingLanding() {
                 <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4 text-purple-400">
                   <Clock className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">14 Kundan So'ng</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">7 Kundan So'ng</h3>
                 <p className="text-sm text-gray-300">Yechib olish imkoniyati</p>
               </div>
               <div className="card-gradient p-6 text-center hover-lift">
@@ -907,33 +890,42 @@ export default function PropTradingLanding() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
               {instantLiteAccounts.map((account, index) => (
                 <div
                   key={`instant-${index}`}
                   className={cn(
-                    "rounded-2xl p-6 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-purple-500/30",
+                    "w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] rounded-2xl p-6 transition-all duration-300 flex flex-col relative hover-lift animate-fade-in-up bg-gray-800/30 backdrop-blur-sm",
+                    account.featured
+                      ? "border-2 border-purple-400 shadow-lg shadow-purple-500/20"
+                      : "border border-gray-700 hover:border-purple-500/30",
                   )}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
+                  {account.featured && (
+                    <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
+                      Tavsiya etiladi!
+                    </span>
+                  )}
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-white mb-2">{account.price}</h3>
+                    <div className="line-through text-red-400 text-lg">{account.oldPrice}</div>
                     <div className="text-3xl font-bold mb-1 text-purple-400">{account.price_uzs}</div>
                     <p className="text-sm text-gray-400">Bir martalik to'lov</p>
                   </div>
 
                   <div className="space-y-3 mb-6 flex-grow">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-300">Kunlik zarar:</span>
-                      <span className="text-white font-medium">{account.dailyLoss}</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-300">Umumiy zarar:</span>
-                      <span className="text-white font-medium">{account.totalLoss}</span>
+                      <span className="text-gray-300">Zarar chegarasi:</span>
+                      <span className="text-red-400 font-medium">{account.dailyLoss}</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-gray-300">Profit Share:</span>
                       <span className="text-green-400 font-medium">80%</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Yechib olish:</span>
+                      <span className="text-blue-400 font-medium">7 kundan keyin</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-gray-300">Target:</span>
@@ -1195,8 +1187,8 @@ export default function PropTradingLanding() {
       )}
 
       {/* Jivo Chat Widget */}
-      <Script 
-        src="//code.jivo.ru/widget/uwsXyzIDTA" 
+      <Script
+        src="//code.jivo.ru/widget/uwsXyzIDTA"
         strategy="lazyOnload"
       />
 
