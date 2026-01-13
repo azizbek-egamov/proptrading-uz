@@ -279,7 +279,7 @@ export default function PricingSection() {
             <span className="text-blue-400">barcha ma'lumotlar sizga taqdim etiladi 100%</span>) -
           </p>
           <p className="text-red-400 text-sm max-w-4xl mx-auto">
-            Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 3% kunlik 6% umumiy miqdorda
+            Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 4% kunlik 6% umumiy miqdorda
             minus qilinsа kontrakt bekor qilinadi va prop hisob bloklandi va bu holatda javobgarlik u yoki bu shaxs
             zimmasiga yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
           </p>

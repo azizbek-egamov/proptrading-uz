@@ -136,7 +136,7 @@ export default function ImtihonsizPricingPage() {
 
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
-            Premium Proplar
+            Premium Imtihonsiz tayyor REAL proplar
             <br />
             <span className="text-lg text-gray-400">(etapsiz, imtihondan o'tilgan, tayyor akkauntlar)</span>
           </h1>

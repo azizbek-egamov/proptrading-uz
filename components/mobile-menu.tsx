@@ -7,12 +7,13 @@ import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface MobileMenuProps {
-  scrollToSection: (ref: React.RefObject<HTMLElement>) => void
+  scrollToSection: (ref: React.RefObject<HTMLElement | null>) => void
   refs: {
-    shartlarRef: React.RefObject<HTMLElement>
-    pricingRef: React.RefObject<HTMLElement>
-    keyslarRef: React.RefObject<HTMLElement>
-    aloqaRef: React.RefObject<HTMLElement>
+    shartlarRef: React.RefObject<HTMLElement | null>
+    pricingRef: React.RefObject<HTMLElement | null>
+    keyslarRef: React.RefObject<HTMLElement | null>
+    aloqaRef: React.RefObject<HTMLElement | null>
+    faqRef: React.RefObject<HTMLElement | null>
   }
 }
 
@@ -20,9 +21,11 @@ export default function MobileMenu({ scrollToSection, refs }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
 
-  const handleClick = (ref: React.RefObject<HTMLElement>) => {
-    scrollToSection(ref)
-    closeMenu()
+  const handleClick = (ref: React.RefObject<HTMLElement | null>) => {
+    if (ref.current) {
+      scrollToSection(ref)
+      closeMenu()
+    }
   }
 
   const toggleMenu = () => {
@@ -78,9 +81,8 @@ export default function MobileMenu({ scrollToSection, refs }: MobileMenuProps) {
       {isOpen && (
         <div className="fixed top-0 left-0 w-screen h-screen bg-black/95 backdrop-blur-lg z-50" onClick={closeMenu}>
           <div
-            className={`absolute top-0 right-0 w-full h-full bg-gradient-to-b from-gray-900 to-black p-6 transition-transform duration-300 ${
-              isOpen ? "translate-x-0" : "translate-x-full"
-            }`}
+            className={`absolute top-0 right-0 w-full h-full bg-gradient-to-b from-gray-900 to-black p-6 transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
+              }`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-end mb-8">
@@ -107,6 +109,12 @@ export default function MobileMenu({ scrollToSection, refs }: MobileMenuProps) {
                 onClick={() => handleClick(refs.keyslarRef)}
               >
                 Keyslar
+              </button>
+              <button
+                className="block w-full text-left py-3 text-xl font-medium border-b border-gray-800 hover:text-blue-400 transition-colors"
+                onClick={() => handleClick(refs.faqRef)}
+              >
+                F.A.Q
               </button>
               <button
                 className="block w-full text-left py-3 text-xl font-medium border-b border-gray-800 hover:text-blue-400 transition-colors"

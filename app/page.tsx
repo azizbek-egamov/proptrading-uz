@@ -28,6 +28,7 @@ const VideoModal = lazy(() => import("@/components/video-modal"))
 const TestimonialCarousel = lazy(() => import("@/components/testimonial-carousel"))
 const StatsSection = lazy(() => import("@/components/stats-section"))
 const ConsistencyGuideSection = lazy(() => import("@/components/consistency-guide-section"))
+const FAQSection = lazy(() => import("@/components/faq-section"))
 
 // Matnlar JSON formatda
 const messages = [
@@ -90,10 +91,11 @@ export default function PropTradingLanding() {
   const pricingRef = useRef<HTMLElement>(null)
   const keyslarRef = useRef<HTMLElement>(null)
   const aloqaRef = useRef<HTMLElement>(null)
+  const faqRef = useRef<HTMLElement>(null)
   const heroRef = useRef<HTMLDivElement>(null)
 
   // Function to handle smooth scrolling without changing URL
-  const scrollToSection = (sectionRef: React.RefObject<HTMLElement>) => {
+  const scrollToSection = (sectionRef: React.RefObject<HTMLElement | null>) => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({
         behavior: "smooth",
@@ -322,7 +324,7 @@ export default function PropTradingLanding() {
     },
   ]
 
-  // Premium Proplar tariflari
+  // Premium Imtihonsiz tayyor REAL proplar tariflari
   const fundedAccounts = [
     {
       title: "MINI",
@@ -336,7 +338,7 @@ export default function PropTradingLanding() {
       withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
       platform: "Ctrader",
       featured: false,
-      category: "Premium Proplar",
+      category: "Premium Imtihonsiz tayyor REAL proplar",
     },
     {
       title: "MINI",
@@ -350,7 +352,7 @@ export default function PropTradingLanding() {
       withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
       platform: "Metatrader 5",
       featured: false,
-      category: "Premium Proplar",
+      category: "Premium Imtihonsiz tayyor REAL proplar",
     },
     {
       title: "START+",
@@ -364,7 +366,7 @@ export default function PropTradingLanding() {
       withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
       platform: "Ctrader",
       featured: true,
-      category: "Premium Proplar",
+      category: "Premium Imtihonsiz tayyor REAL proplar",
     },
     {
       title: "START+",
@@ -378,7 +380,7 @@ export default function PropTradingLanding() {
       withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
       platform: "Metatrader 5",
       featured: false,
-      category: "Premium Proplar",
+      category: "Premium Imtihonsiz tayyor REAL proplar",
     },
     {
       title: "MEDIUM",
@@ -392,7 +394,7 @@ export default function PropTradingLanding() {
       withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
       platform: "Metatrader 5",
       featured: true,
-      category: "Premium Proplar",
+      category: "Premium Imtihonsiz tayyor REAL proplar",
     },
     {
       title: "PREMIUM",
@@ -406,7 +408,7 @@ export default function PropTradingLanding() {
       withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
       platform: "Metatrader 5",
       featured: false,
-      category: "Premium Proplar",
+      category: "Premium Imtihonsiz tayyor REAL proplar",
     },
   ]
 
@@ -470,6 +472,13 @@ export default function PropTradingLanding() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button
+              onClick={() => scrollToSection(faqRef)}
+              className="hover:text-blue-400 transition-colors relative group"
+            >
+              F.A.Q
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+            <button
               onClick={() => scrollToSection(aloqaRef)}
               className="hover:text-blue-400 transition-colors relative group"
             >
@@ -491,7 +500,10 @@ export default function PropTradingLanding() {
               </>
             )}
             <div className="lg:hidden">
-              <MobileMenu scrollToSection={scrollToSection} refs={{ shartlarRef, pricingRef, keyslarRef, aloqaRef }} />
+              <MobileMenu
+                scrollToSection={scrollToSection}
+                refs={{ shartlarRef, pricingRef, keyslarRef, aloqaRef, faqRef }}
+              />
             </div>
           </div>
         </div>
@@ -835,7 +847,7 @@ export default function PropTradingLanding() {
                 <span className="text-blue-400">barcha ma'lumotlar sizga taqdim etiladi 100%</span>) -
               </p>
               <p className="text-red-400 text-sm max-w-4xl mx-auto">
-                Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 3% kunlik 6% umumiy miqdorda
+                Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 4% kunlik 6% umumiy miqdorda
                 minus qilinsа kontrakt bekor qilinadi va prop hisob bloklandi va bu holatda javobgarlik u yoki bu shaxs
                 zimmasiga yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
               </p>
@@ -951,9 +963,9 @@ export default function PropTradingLanding() {
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
           </div>
 
-          {/* Premium Proplar */}
+          {/* Premium Imtihonsiz tayyor REAL proplar */}
           <div className="mb-16">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-green-400">Premium Proplar</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-green-400">Premium Imtihonsiz tayyor REAL proplar</h3>
             <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-8 text-center">
               Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, kuchli signal beruvchi bitta
               indikator, hisobni nomingizga olib berish va pul yechish jarayonlarida ko'maklashish kiritilgan!
@@ -1138,12 +1150,18 @@ export default function PropTradingLanding() {
         </Suspense>
       </div>
 
+      <section ref={faqRef} id="faq">
+        <Suspense fallback={<div className="h-screen bg-black"></div>}>
+          <FAQSection />
+        </Suspense>
+      </section>
+
       {/* Aloqa Section */}
-      <div ref={aloqaRef}>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+      <section ref={aloqaRef} id="aloqa">
+        <Suspense fallback={<div className="h-screen bg-black"></div>}>
           <AloqaSection />
         </Suspense>
-      </div>
+      </section>
 
       {/* Footer */}
       <Suspense fallback={<div className="min-h-[200px]" />}>
