@@ -543,7 +543,8 @@ export default function PropTradingLanding() {
               </div>
 
               {/* Countdown Timer */}
-              <div className="space-y-4 animate-fade-in-up animate-delay-500">
+              {/* Countdown Timer - Temporary commented out */}
+              {/* <div className="space-y-4 animate-fade-in-up animate-delay-500">
                 <div className="flex items-center justify-center lg:justify-start space-x-2 md:space-x-4 text-center">
                   <div className="card-gradient p-2 md:p-4 min-w-[60px] md:min-w-[80px] hover-lift">
                     <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-300">
@@ -576,7 +577,7 @@ export default function PropTradingLanding() {
                 <p className="text-center lg:text-left text-xs md:text-sm text-blue-300 uppercase tracking-wider animate-fade-in-up animate-delay-600 font-medium">
                   CHEGIRMALAR TUGASHIGACHA QOLGAN VAQT
                 </p>
-              </div>
+              </div> */}
             </div>
 
             {/* Right Content - Mobile Mockups */}
