@@ -32,7 +32,7 @@ export default function PurchaseModal({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [currentStep, setCurrentStep] = useState<"form" | "payment">("form")
-  const [selectedCard, setSelectedCard] = useState<"uzcard" | "visa">("uzcard")
+  const [selectedCard, setSelectedCard] = useState<"uzcard" | "visa">("visa")
   const [isOfferAccepted, setIsOfferAccepted] = useState(false)
   const [isOfferModalOpen, setIsOfferModalOpen] = useState(false)
 
@@ -302,8 +302,8 @@ export default function PurchaseModal({
                 ) : (
                   <form onSubmit={handlePaymentSubmit} className="space-y-4 md:space-y-5">
                     {/* Karta tanlash */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
+                    <div className="grid grid-cols-1 gap-3">
+                      {/* <button
                         type="button"
                         onClick={() => setSelectedCard("uzcard")}
                         className={`p-3 rounded-xl border-2 transition-all duration-300 ${selectedCard === "uzcard"
@@ -315,7 +315,7 @@ export default function PurchaseModal({
                           <div className="text-lg font-bold text-blue-400 mb-1">💳 UzCard</div>
                           <div className="text-xs text-gray-400">O'zbekiston kartasi</div>
                         </div>
-                      </button>
+                      </button> */}
                       <button
                         type="button"
                         onClick={() => setSelectedCard("visa")}
