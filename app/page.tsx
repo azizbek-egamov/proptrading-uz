@@ -19,7 +19,6 @@ import { Badge } from "@/components/ui/badge"
 const HowItWorksSection = lazy(() => import("@/components/how-it-works-section"))
 const ProcessStepsSection = lazy(() => import("@/components/process-steps-section"))
 const SocialProofSection = lazy(() => import("@/components/social-proof-section"))
-const PartnersSection = lazy(() => import("@/components/partners-section"))
 const ShartlarSection = lazy(() => import("@/components/shartlar-section"))
 const KeyslarSection = lazy(() => import("@/components/keyslar-section"))
 const AloqaSection = lazy(() => import("@/components/aloqa-section"))
@@ -27,7 +26,6 @@ const Footer = lazy(() => import("@/components/footer"))
 const VideoModal = lazy(() => import("@/components/video-modal"))
 const TestimonialCarousel = lazy(() => import("@/components/testimonial-carousel"))
 const StatsSection = lazy(() => import("@/components/stats-section"))
-const ConsistencyGuideSection = lazy(() => import("@/components/consistency-guide-section"))
 const FAQSection = lazy(() => import("@/components/faq-section"))
 
 // Matnlar JSON formatda
@@ -107,8 +105,8 @@ export default function PropTradingLanding() {
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date().getTime()
-      // 14-noyabr 2025, 23:59:59
-      const targetDate = new Date(2025, 10, 14, 23, 59, 59).getTime()
+      // 31-may 2026, 23:59:59
+      const targetDate = new Date(2026, 4, 31, 23, 59, 59).getTime()
       const difference = Math.max(0, targetDate - now)
 
       const days = Math.max(0, Math.floor(difference / (1000 * 60 * 60 * 24)))
@@ -171,82 +169,127 @@ export default function PropTradingLanding() {
 
   const formatTime = (time: number) => time.toString().padStart(2, "0")
 
-  // Imtihonli Proplar tariflari
+  // Imtihonli Proplar tariflari (1 STEP)
   const etapliPricingOptions = [
     {
       title: "",
-      price: "15 000$",
-      price_uzs: "1 600 000 UZS",
-      oldPrice: "178$",
+      price: "5 000$",
+      price_uzs: "750 000 UZS",
+      oldPrice: "",
       features: [
-        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
         "umumiy zarar miqdori 6% dan oshmasligi lozim",
         "10% target (foyda qilish lozim)",
       ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      withdrawal: "80% foydani yechib olish, Payout darhol",
       platform: "Metatrader 4/5",
       featured: false,
-      category: "PREMIUM imtihonli hisoblar",
+      category: "IMTIHONLI (1 STEP)",
+    },
+    {
+      title: "",
+      price: "10 000$",
+      price_uzs: "1 080 000 UZS",
+      oldPrice: "",
+      features: [
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+      ],
+      withdrawal: "80% foydani yechib olish, Payout darhol",
+      platform: "Metatrader 4/5",
+      featured: true,
+      category: "IMTIHONLI (1 STEP)",
+    },
+    {
+      title: "",
+      price: "15 000$",
+      price_uzs: "1 400 000 UZS",
+      oldPrice: "",
+      features: [
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+      ],
+      withdrawal: "80% foydani yechib olish, Payout darhol",
+      platform: "Metatrader 4/5",
+      featured: false,
+      category: "IMTIHONLI (1 STEP)",
     },
     {
       title: "",
       price: "25 000$",
-      price_uzs: "2 500 000 UZS",
-      oldPrice: "248$",
+      price_uzs: "2 200 000 UZS",
+      oldPrice: "",
       features: [
-        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
         "umumiy zarar miqdori 6% dan oshmasligi lozim",
         "10% target (foyda qilish lozim)",
       ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      withdrawal: "80% foydani yechib olish, Payout darhol",
       platform: "Metatrader 4/5",
       featured: false,
-      category: "PREMIUM imtihonli hisoblar",
+      category: "IMTIHONLI (1 STEP)",
     },
     {
       title: "",
       price: "50 000$",
-      price_uzs: "4 000 000 UZS",
-      oldPrice: "358$",
+      price_uzs: "3 800 000 UZS",
+      oldPrice: "",
       features: [
-        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
         "umumiy zarar miqdori 6% dan oshmasligi lozim",
         "10% target (foyda qilish lozim)",
       ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      withdrawal: "80% foydani yechib olish, Payout darhol",
       platform: "Metatrader 4/5",
-      featured: true,
-      category: "PREMIUM imtihonli hisoblar",
+      featured: false,
+      category: "IMTIHONLI (1 STEP)",
     },
     {
       title: "",
       price: "100 000$",
-      price_uzs: "6 000 000 UZS",
-      oldPrice: "618$",
+      price_uzs: "5 500 000 UZS",
+      oldPrice: "",
       features: [
-        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
         "umumiy zarar miqdori 6% dan oshmasligi lozim",
         "10% target (foyda qilish lozim)",
       ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      withdrawal: "80% foydani yechib olish, Payout darhol",
       platform: "Metatrader 4/5",
-      featured: true,
-      category: "PREMIUM imtihonli hisoblar",
+      featured: false,
+      category: "IMTIHONLI (1 STEP)",
     },
     {
       title: "",
       price: "200 000$",
       price_uzs: "10 000 000 UZS",
-      oldPrice: "1098$",
+      oldPrice: "",
       features: [
-        "kunlik zarar miqdori 4% dan oshmasligi lozim",
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
         "umumiy zarar miqdori 6% dan oshmasligi lozim",
         "10% target (foyda qilish lozim)",
       ],
-      withdrawal: "REALga o'tgach, 14 kundan so'ng 80% daromadni chiqarish mumkin",
+      withdrawal: "80% foydani yechib olish, Payout darhol",
       platform: "Metatrader 4/5",
       featured: false,
-      category: "PREMIUM imtihonli hisoblar ",
+      category: "IMTIHONLI (1 STEP)",
+    },
+    {
+      title: "",
+      price: "400 000$",
+      price_uzs: "26 000 000 UZS",
+      oldPrice: "",
+      features: [
+        "kunlik zarar miqdori 3% dan oshmasligi lozim",
+        "umumiy zarar miqdori 6% dan oshmasligi lozim",
+        "10% target (foyda qilish lozim)",
+      ],
+      withdrawal: "80% foydani yechib olish, Payout darhol",
+      platform: "Metatrader 4/5",
+      featured: false,
+      category: "IMTIHONLI (1 STEP)",
     },
   ]
 
@@ -254,161 +297,83 @@ export default function PropTradingLanding() {
   const instantLiteAccounts = [
     {
       title: "",
-      price: "2 500$",
-      price_uzs: "580 000 UZS",
-      oldPrice: "68$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
+      price: "1 000$",
+      price_uzs: "1 000 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
       featured: false,
-      category: "Imtihonsiz - Real proplar",
+      category: "IMTIHONSIZ",
+    },
+    {
+      title: "",
+      price: "2 500$",
+      price_uzs: "1 500 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
+      featured: false,
+      category: "IMTIHONSIZ",
     },
     {
       title: "",
       price: "5 000$",
-      price_uzs: "1 000 000 UZS",
-      oldPrice: "118$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
+      price_uzs: "3 000 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
       featured: false,
-      category: "Imtihonsiz - Real proplar",
+      category: "IMTIHONSIZ",
     },
     {
       title: "",
       price: "10 000$",
-      price_uzs: "1 700 000 UZS",
-      oldPrice: "168$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
-      featured: false,
-      category: "Imtihonsiz - Real proplar",
-    },
-    {
-      title: "",
-      price: "15 000$",
-      price_uzs: "2 300 000 UZS",
-      oldPrice: "238$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
-      featured: false,
-      category: "Imtihonsiz - Real proplar",
+      price_uzs: "4 900 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
+      featured: true,
+      category: "IMTIHONSIZ",
     },
     {
       title: "",
       price: "25 000$",
-      price_uzs: "3 300 000 UZS",
-      oldPrice: "328$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
-      featured: true,
-      category: "Imtihonsiz - Real proplar",
+      price_uzs: "8 850 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
+      featured: false,
+      category: "IMTIHONSIZ",
     },
     {
       title: "",
       price: "50 000$",
-      price_uzs: "4 900 000 UZS",
-      oldPrice: "498$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
+      price_uzs: "18 800 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
       featured: false,
-      category: "Imtihonsiz - Real proplar",
+      category: "IMTIHONSIZ",
+    },
+    {
+      title: "",
+      price: "75 000$",
+      price_uzs: "25 000 000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
+      featured: false,
+      category: "IMTIHONSIZ",
     },
     {
       title: "",
       price: "100 000$",
-      price_uzs: "9 000 000 UZS",
-      oldPrice: "858$",
-      dailyLoss: "4%",
-      totalLoss: "4%",
+      price_uzs: "37,500,000 UZS",
+      oldPrice: "",
+      dailyLoss: "8%",
+      totalLoss: "8%",
       featured: false,
-      category: "Imtihonsiz - Real proplar",
-    },
-  ]
-
-  // Premium Imtihonsiz tayyor REAL proplar tariflari
-  const fundedAccounts = [
-    {
-      title: "MINI",
-      price: "1 000$",
-      price_uzs: "1 100 000 UZS",
-      features: [
-        "8% umumiy yo'qotish bo'lmasligi lozim!",
-        "Yo'q - target (foyda chegarasi yo'q)",
-        "80% gacha qilingan daromaddan olinadigan ulushingiz",
-      ],
-      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
-      platform: "Ctrader",
-      featured: false,
-      category: "Premium Imtihonsiz tayyor REAL proplar",
-    },
-    {
-      title: "MINI",
-      price: "2 500$",
-      price_uzs: "1 800 000 UZS",
-      features: [
-        "8% umumiy yo'qotish bo'lmasligi lozim!",
-        "Yo'q - target (foyda chegarasi yo'q)",
-        "80% gacha qilingan daromaddan olinadigan ulushingiz",
-      ],
-      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
-      platform: "Metatrader 5",
-      featured: false,
-      category: "Premium Imtihonsiz tayyor REAL proplar",
-    },
-    {
-      title: "START+",
-      price: "5 000$",
-      price_uzs: "3 300 000 UZS",
-      features: [
-        "8% umumiy yo'qotish bo'lmasligi lozim!",
-        "Yo'q - target (foyda chegarasi yo'q)",
-        "80% gacha qilingan daromaddan olinadigan ulushingiz",
-      ],
-      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
-      platform: "Ctrader",
-      featured: true,
-      category: "Premium Imtihonsiz tayyor REAL proplar",
-    },
-    {
-      title: "START+",
-      price: "10 000$",
-      price_uzs: "6 000 000 UZS",
-      features: [
-        "8% umumiy yo'qotish bo'lmasligi lozim!",
-        "Yo'q - target (foyda chegarasi yo'q)",
-        "80% gacha qilingan daromaddan olinadigan ulushingiz",
-      ],
-      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
-      platform: "Metatrader 5",
-      featured: false,
-      category: "Premium Imtihonsiz tayyor REAL proplar",
-    },
-    {
-      title: "MEDIUM",
-      price: "25 000$",
-      price_uzs: "12 000 000 UZS",
-      features: [
-        "8% umumiy yo'qotish bo'lmasligi lozim!",
-        "Yo'q - target (foyda chegarasi yo'q)",
-        "80% gacha qilingan daromaddan olinadigan ulushingiz",
-      ],
-      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
-      platform: "Metatrader 5",
-      featured: true,
-      category: "Premium Imtihonsiz tayyor REAL proplar",
-    },
-    {
-      title: "PREMIUM",
-      price: "50 000$",
-      price_uzs: "23 000 000 UZS",
-      features: [
-        "8% umumiy yo'qotish bo'lmasligi lozim!",
-        "Yo'q - target (foyda chegarasi yo'q)",
-        "80% gacha qilingan daromaddan olinadigan ulushingiz",
-      ],
-      withdrawal: "qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz",
-      platform: "Metatrader 5",
-      featured: false,
-      category: "Premium Imtihonsiz tayyor REAL proplar",
+      category: "IMTIHONSIZ",
     },
   ]
 
@@ -490,7 +455,7 @@ export default function PropTradingLanding() {
           <div className="flex items-center space-x-4">
             <div className="hidden lg:flex items-center space-x-2 text-sm">
               <Phone className="w-4 h-4 text-blue-400" />
-              <span>+998 88 022 33 66</span>
+              <span>{process.env.NEXT_PUBLIC_PHONE_NUMBER}</span>
             </div>
             {!isMobile && (
               <>
@@ -517,16 +482,12 @@ export default function PropTradingLanding() {
             <div className="space-y-6 md:space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-left text-shadow-lg">
-                  Katta <span className="text-blue-400 font-bold">KAPITAL</span>{" "}
+                  5000$ dan 400 000$ gacha <span className="text-blue-400 font-bold">TREYDINGda SAVDO</span> uchun hisoblar!
                 </h1>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-left animate-delay-200 text-shadow-lg">
-                  endi muammo emas!
-                </h2>
               </div>
 
               <p className="text-lg md:text-xl text-gray-300 max-w-lg animate-fade-in-up animate-delay-300">
-                Prop treyding orqali biz bilan birga <span className="text-blue-400 font-semibold">daromad oling!</span>{" "}
-                Katta kapital bilan savdo qiling va yuqori natijalarni qo'lga kiriting.
+                <span className="font-bold text-white">Treydermisiz ? Yangimisiz ?</span> katta kapital olib hoziroq savdoni boshlang!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-400">
@@ -543,8 +504,7 @@ export default function PropTradingLanding() {
               </div>
 
               {/* Countdown Timer */}
-              {/* Countdown Timer - Temporary commented out */}
-              {/* <div className="space-y-4 animate-fade-in-up animate-delay-500">
+              <div className="space-y-4 animate-fade-in-up animate-delay-500">
                 <div className="flex items-center justify-center lg:justify-start space-x-2 md:space-x-4 text-center">
                   <div className="card-gradient p-2 md:p-4 min-w-[60px] md:min-w-[80px] hover-lift">
                     <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-300">
@@ -577,7 +537,7 @@ export default function PropTradingLanding() {
                 <p className="text-center lg:text-left text-xs md:text-sm text-blue-300 uppercase tracking-wider animate-fade-in-up animate-delay-600 font-medium">
                   CHEGIRMALAR TUGASHIGACHA QOLGAN VAQT
                 </p>
-              </div> */}
+              </div>
             </div>
 
             {/* Right Content - Mobile Mockups */}
@@ -847,6 +807,11 @@ export default function PropTradingLanding() {
                 boshlaymiz, natija qo'l ostingizda bo'ladi (
                 <span className="text-blue-400">barcha ma'lumotlar sizga taqdim etiladi 100%</span>) -
               </p>
+              
+              <div className="text-yellow-400 font-bold text-sm md:text-base max-w-4xl mx-auto border border-yellow-400/30 bg-yellow-400/10 p-3 rounded-lg flex items-center justify-center gap-2">
+                <span>⚠️</span> DIQQAT: To'lov qilishda har bir hisob uchun qo'shimcha 200 000 UZS (Registratsiya va konsultatsiya xizmati uchun) qo'shib to'lanadi!
+              </div>
+
               <p className="text-red-400 text-sm max-w-4xl mx-auto">
                 Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 4% kunlik 6% umumiy miqdorda
                 minus qilinsа kontrakt bekor qilinadi va prop hisob bloklandi va bu holatda javobgarlik u yoki bu shaxs
@@ -964,148 +929,11 @@ export default function PropTradingLanding() {
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
           </div>
 
-          {/* Premium Imtihonsiz tayyor REAL proplar */}
-          <div className="mb-16">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-green-400">Premium Imtihonsiz tayyor REAL proplar</h3>
-            <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-8 text-center">
-              Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, kuchli signal beruvchi bitta
-              indikator, hisobni nomingizga olib berish va pul yechish jarayonlarida ko'maklashish kiritilgan!
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {fundedAccounts.map((account, index) => (
-                <div
-                  key={`premium-${index}`}
-                  className={cn(
-                    "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative hover-lift animate-fade-in-up",
-                    account.featured
-                      ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
-                      : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
-                  )}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {account.featured && (
-                    <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
-                      Tavsiya etiladi!
-                    </span>
-                  )}
-                  <div className="text-center mb-6">
-                    <div
-                      className={cn(
-                        "text-sm font-semibold uppercase tracking-wider mb-2",
-                        account.featured ? "text-blue-100" : "text-gray-400",
-                      )}
-                    >
-                      {account.title}
-                    </div>
-                    <div className="text-4xl md:text-5xl font-bold mb-4">{account.price}</div>
-                    <div className="w-12 h-0.5 bg-blue-500 mx-auto"></div>
-                  </div>
-
-                  <div className="space-y-4 mb-8 flex-grow">
-                    {account.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start space-x-3">
-                        <div
-                          className={cn(
-                            "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                            account.featured ? "bg-white/20" : "bg-blue-500",
-                          )}
-                        >
-                          <CheckCircle className="w-3 h-3 text-white" />
-                        </div>
-                        <div className="text-sm">{feature}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="text-center mb-6">
-                    <div
-                      className={cn("font-semibold text-sm mb-1", account.featured ? "text-blue-100" : "text-blue-500")}
-                    >
-                      NARXI:
-                    </div>
-                    <div className={cn("text-2xl font-bold", account.featured ? "text-white" : "text-red-500")}>
-                      {account.price_uzs}
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-start space-x-3">
-                      <div
-                        className={cn(
-                          "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                          account.featured ? "bg-white/20" : "bg-blue-500",
-                        )}
-                      >
-                        <DollarSign className="w-3 h-3 text-white" />
-                      </div>
-                      <div className="text-sm">
-                        <strong>Yechib olish: </strong>
-                        {account.withdrawal}
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <div
-                        className={cn(
-                          "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                          account.featured ? "bg-white/20" : "bg-blue-500",
-                        )}
-                      >
-                        <TrendingUp className="w-3 h-3 text-white" />
-                      </div>
-                      <div className="text-sm">
-                        <strong>Savdo platformasi: </strong>
-                        {account.platform}
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button
-                    className={cn(
-                      "w-full py-3 rounded-full font-semibold mb-4",
-                      account.featured
-                        ? "bg-white text-blue-600 hover:bg-gray-100"
-                        : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
-                    )}
-                    onClick={() => handleOpenModal(account.title, account.price_uzs, account.price)}
-                  >
-                    Prop hisobni sotib olish!
-                  </Button>
-
-                  <div className="text-center">
-                    <h4 className={cn("font-bold text-sm", account.featured ? "text-white" : "text-yellow-400")}>
-                      SIGNAL BERUVCHI
-                      <br />
-                      INDIKATOR SOVG'A 🎁
-                    </h4>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12 space-y-4">
-              <p className="text-gray-400 text-sm max-w-4xl mx-auto">
-                <strong>Barcha hisoblarni 10 daqiqa ichida rasmiylashtirib sizga tezkor servis ko'rsatamiz!</strong>
-                Karta orqali to'lov qilasiz va yopiq guruhimiz a'zosi hamda prop hisob egasi bo'lasiz va biz hisobingizda
-                savdo jarayonlarini boshlaymiz, natija qo'l ostingizda bo'ladi{" "}
-                <span className="text-blue-400">(barcha ma'lumotlar sizga taqdim etiladi 100%) -</span>
-              </p>
-              <p className="text-red-400 text-sm max-w-4xl mx-auto">
-                <strong>
-                  Imtihonsiz real prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar umumiy miqdorda 8% minus qilinsa
-                  kontrakt bekor qilinadi va prop hisob bloklanadi va bu holatda javobgarlik u yoki bu shaxs zimmasiga
-                  yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
-                </strong>
-              </p>
-            </div>
-          </div>
+          {/* Premium Imtihonsiz section removed */}
         </div>
       </section>
 
-      {/* Consistency Guide Section */}
-      <Suspense fallback={<div className="min-h-[400px]" />}>
-        <ConsistencyGuideSection />
-      </Suspense>
+      {/* Consistency Guide Section removed */}
 
       {/* How It Works Section */}
       <Suspense fallback={<div className="min-h-[400px]" />}>
@@ -1122,10 +950,7 @@ export default function PropTradingLanding() {
         <SocialProofSection />
       </Suspense>
 
-      {/* Partners Section */}
-      <Suspense fallback={<div className="min-h-[200px]" />}>
-        <PartnersSection />
-      </Suspense>
+      {/* Partners Section removed */}
 
       {/* Stats Section */}
       <Suspense fallback={<div className="min-h-[300px]" />}>

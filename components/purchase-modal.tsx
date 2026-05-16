@@ -35,19 +35,51 @@ export default function PurchaseModal({
   const [selectedCard, setSelectedCard] = useState<"uzcard" | "visa">("visa")
   const [isOfferAccepted, setIsOfferAccepted] = useState(false)
   const [isOfferModalOpen, setIsOfferModalOpen] = useState(false)
+  
+  const [promoCode, setPromoCode] = useState("")
+  const [promoDiscount, setPromoDiscount] = useState(0)
+  const [isPromoWaiveFee, setIsPromoWaiveFee] = useState(false)
+  const [promoError, setPromoError] = useState("")
+  const [isPromoApplied, setIsPromoApplied] = useState(false)
+
+  const handleApplyPromo = () => {
+    const code = promoCode.trim().toUpperCase()
+    setPromoError("")
+    
+    if (code === "PROPTRADER2025") {
+      setPromoDiscount(5)
+      setIsPromoWaiveFee(false)
+      setIsPromoApplied(true)
+    } else if (code === "DOIMIYMIJOZ") {
+      setPromoDiscount(7)
+      setIsPromoWaiveFee(true)
+      setIsPromoApplied(true)
+    } else if (code === "XFSTUDENT") {
+      setPromoDiscount(10)
+      setIsPromoWaiveFee(true)
+      setIsPromoApplied(true)
+    } else {
+      setPromoError("Noto'g'ri promokod!")
+      setPromoDiscount(0)
+      setIsPromoWaiveFee(false)
+      setIsPromoApplied(false)
+    }
+  }
 
   const cardData = {
     uzcard: {
-      number: "8600 1204 1840 9390",
-      raw: "8600120418409390",
+      number: process.env.NEXT_PUBLIC_UZCARD_NUMBER || "5614 6835 1622 0100",
+      raw: (process.env.NEXT_PUBLIC_UZCARD_NUMBER || "5614 6835 1622 0100").replace(/\s/g, ""),
       name: "UzCard",
-      color: "from-blue-600 to-cyan-600"
+      color: "from-blue-600 to-cyan-600",
+      holder: process.env.NEXT_PUBLIC_UZCARD_HOLDER || "Vaisova M"
     },
     visa: {
-      number: "4998 9300 0743 1657",
-      raw: "4998930007431657",
+      number: process.env.NEXT_PUBLIC_VISA_NUMBER || "4916 9903 2213 1886",
+      raw: (process.env.NEXT_PUBLIC_VISA_NUMBER || "4916 9903 2213 1886").replace(/\s/g, ""),
       name: "Visa",
-      color: "from-purple-600 to-pink-600"
+      color: "from-purple-600 to-pink-600",
+      holder: process.env.NEXT_PUBLIC_VISA_HOLDER || "Xxx"
     }
   }
 
@@ -164,6 +196,12 @@ export default function PurchaseModal({
       console.error("Failed to copy: ", err)
     }
   }
+
+  const priceNumber = parseInt(accountPrice.replace(/\s/g, "").replace("UZS", ""), 10) || 0
+  const discountAmount = Math.round(priceNumber * (promoDiscount / 100))
+  const finalPrice = priceNumber - discountAmount
+  const fee = isPromoWaiveFee ? 0 : 200000
+  const totalPayment = finalPrice + fee
 
   if (!isOpen) return null
 
@@ -302,8 +340,8 @@ export default function PurchaseModal({
                 ) : (
                   <form onSubmit={handlePaymentSubmit} className="space-y-4 md:space-y-5">
                     {/* Karta tanlash */}
-                    <div className="grid grid-cols-1 gap-3">
-                      {/* <button
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <button
                         type="button"
                         onClick={() => setSelectedCard("uzcard")}
                         className={`p-3 rounded-xl border-2 transition-all duration-300 ${selectedCard === "uzcard"
@@ -315,7 +353,7 @@ export default function PurchaseModal({
                           <div className="text-lg font-bold text-blue-400 mb-1">💳 UzCard</div>
                           <div className="text-xs text-gray-400">O'zbekiston kartasi</div>
                         </div>
-                      </button> */}
+                      </button>
                       <button
                         type="button"
                         onClick={() => setSelectedCard("visa")}
@@ -356,11 +394,64 @@ export default function PurchaseModal({
                             <Copy className="w-3 h-3 md:w-4 md:h-4" />
                           </Button>
                         </div>
+                        <div className="text-xs text-gray-400 mt-3 mb-1">Karta egasi</div>
+                        <div className="text-sm md:text-base font-semibold text-white">
+                          {cardData[selectedCard].holder}
+                        </div>
                       </div>
 
-                      <p className="text-xs md:text-sm text-gray-400 mt-2 md:mt-3">
-                        Narx: <span className="text-white font-semibold">{accountPrice}</span>
-                      </p>
+                      {/* Promo Code Input */}
+                      <div className="mt-4 mb-3">
+                        <label className="block text-xs md:text-sm font-medium text-gray-300 mb-2">
+                          Promokod bormi?
+                        </label>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={promoCode}
+                            onChange={(e) => setPromoCode(e.target.value)}
+                            placeholder="Promokodni kiriting"
+                            className="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                          />
+                          <Button
+                            type="button"
+                            onClick={handleApplyPromo}
+                            className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-2 rounded-lg"
+                            size="sm"
+                          >
+                            Qo'llash
+                          </Button>
+                        </div>
+                        {promoError && (
+                          <p className="text-xs text-red-500 mt-1">{promoError}</p>
+                        )}
+                        {isPromoApplied && !promoError && (
+                          <p className="text-xs text-green-500 mt-1">Promokod muvaffaqiyatli qo'llandi!</p>
+                        )}
+                      </div>
+
+                      <div className="mt-3 p-3 bg-blue-900/30 border border-blue-500/30 rounded-lg">
+                        <p className="text-xs md:text-sm text-gray-300">
+                          Hisob narxi: <span className={promoDiscount > 0 ? "line-through text-gray-500" : "text-white font-semibold"}>{accountPrice}</span>
+                        </p>
+                        {promoDiscount > 0 && (
+                          <p className="text-xs md:text-sm text-green-400 mt-1">
+                            Chegirma ({promoDiscount}%): <span className="font-semibold">-{discountAmount.toLocaleString()} UZS</span>
+                          </p>
+                        )}
+                        {promoDiscount > 0 && (
+                          <p className="text-xs md:text-sm text-white mt-1">
+                            Yangi narx: <span className="font-semibold">{finalPrice.toLocaleString()} UZS</span>
+                          </p>
+                        )}
+                        <p className="text-xs md:text-sm text-gray-300 mt-1">
+                          Registratsiya va konsultatsiya: <span className={isPromoWaiveFee ? "line-through text-gray-500" : "text-white font-semibold"}>200 000 UZS</span>
+                        </p>
+                        <div className="w-full h-px bg-gray-700 my-2"></div>
+                        <p className="text-xs md:text-sm text-yellow-400 font-bold flex items-center gap-1">
+                          <span>⚠️</span> Jami to'lov: {totalPayment.toLocaleString()} UZS
+                        </p>
+                      </div>
                     </div>
 
                     <div>

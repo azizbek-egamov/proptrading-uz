@@ -108,7 +108,7 @@ export default function AloqaSection() {
                   </div>
                   <div>
                     <p className="text-gray-400">Telefon raqam</p>
-                    <p className="text-white font-semibold text-lg">+998 88 022 33 66</p>
+                    <p className="text-white font-semibold text-lg">{process.env.NEXT_PUBLIC_PHONE_NUMBER}</p>
                   </div>
                 </div>
 
@@ -142,7 +142,7 @@ export default function AloqaSection() {
             <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-blue-500/30 rounded-xl p-6 shadow-lg">
               <h4 className="text-lg font-bold text-white mb-3">⚡ Tezkor javob</h4>
               <p className="text-gray-300">
-                Bizning menedjerlarimiz 10 daqiqa ichida sizga javob berishadi va barcha savollaringizga yordam beradi.
+                Bizning menedjerlarimiz 10 daqiqa ichida sizga javob berishadi va barcha savollaringizga yordam berishadi.
               </p>
             </div>
           </div>
@@ -222,6 +222,41 @@ export default function AloqaSection() {
             <p className="text-gray-400 text-sm mt-4">
               * Majburiy maydonlar. Sizning ma'lumotlaringiz xavfsiz saqlanadi.
             </p>
+          </div>
+        </div>
+
+        {/* Telegram Blocks */}
+        <div className="grid md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 shadow-lg hover-lift flex flex-col items-center text-center">
+            <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 text-blue-400">
+              <Send className="w-6 h-6" />
+            </div>
+            <h4 className="text-lg font-bold text-white mb-2">Savollar uchun admin bilan bog'laning</h4>
+            <a 
+              href={process.env.NEXT_PUBLIC_TELEGRAM_ADMIN} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-400 font-semibold hover:underline text-lg"
+            >
+              @iamvaisov
+            </a>
+          </div>
+          
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 shadow-lg hover-lift flex flex-col items-center text-center">
+            <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mb-4 text-purple-400">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z" />
+              </svg>
+            </div>
+            <h4 className="text-lg font-bold text-white mb-2">Rasmiy Telegram kanalimiz (CHEGIRMA va PROMOKODLAR)</h4>
+            <a 
+              href={process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-purple-400 font-semibold hover:underline text-lg"
+            >
+              PROPTRADER2025
+            </a>
           </div>
         </div>
       </div>

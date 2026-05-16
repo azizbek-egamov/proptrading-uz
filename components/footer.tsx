@@ -47,7 +47,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5 text-gray-400 hover:text-white" />
               </a>
               <a
-                href="https://t.me/thexorazmforex"
+                href={process.env.NEXT_PUBLIC_TELEGRAM_ADMIN}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800/50 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-all duration-300 hover-lift"
@@ -67,7 +67,7 @@ export default function Footer() {
                 <Youtube className="w-5 h-5 text-gray-400 hover:text-white" />
               </a>
               <a
-                href="https://t.me/+2C4gMfiKi-gyMDEy"
+                href={process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800/50 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-all duration-300 hover-lift"
@@ -117,7 +117,7 @@ export default function Footer() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                <span className="text-gray-400">+998 50 001 29 59</span>
+                <span className="text-gray-400">{process.env.NEXT_PUBLIC_PHONE_NUMBER}</span>
               </p>
               <p className="flex items-start space-x-3">
                 <svg
