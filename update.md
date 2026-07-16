@@ -9,7 +9,7 @@ Registatsiya va konsultatsiya xizmat haqi har qanday hisob uchun 👇
 Qanday foydalanishni bilmaysizmi?
 XF VIP’da onlayn va offlayn o‘rgatamiz 
 
-👉 PROP deb yozing @iamvaisov | 90 090 98 98
+👉 PROP deb yozing @iamvaisov | +998 87 460 06 00
 
 📍 Location: https://maps.app.goo.gl/eQS4HKZ23CE7XNRL
 
@@ -18,7 +18,7 @@ XF VIP’da onlayn va offlayn o‘rgatamiz
 2 - 31-maygacha obratniy otchet KATTA CHEGIRMAGA ulgurib qolingdab 
 3 - KATTA KAPITAL ENDI MUAMMO EMAS dagan yerina
  5000$ dan 400 000$ gacha PROP hisobda oling va savdoni boshlang! - dab o'zgartirish garak
-4 - Telefon raqam 90 090 98 98
+4 - Telefon raqam: +998 87 460 06 00
 5 - Karta raqam UZCARD 5614 6835 1622 0100 (Vaisova M)
 VISA 4916 9903 2213 1886 Xxx dab chiqadi bunda
 

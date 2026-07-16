@@ -180,7 +180,7 @@ export default function AloqaSection() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="+998 90 123 45 67"
+                  placeholder="+998 87 460 06 00"
                 />
               </div>
 

@@ -294,7 +294,7 @@ export default function PurchaseModal({
                         onChange={handleChange}
                         required
                         className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                        placeholder="+998 90 123 45 67"
+                        placeholder="+998 87 460 06 00"
                       />
                     </div>
 
