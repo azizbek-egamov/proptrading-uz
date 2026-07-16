@@ -105,8 +105,8 @@ export default function PropTradingLanding() {
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date().getTime()
-      // 31-may 2026, 23:59:59
-      const targetDate = new Date(2026, 4, 31, 23, 59, 59).getTime()
+      // 21-iyul 2026, 23:59:59
+      const targetDate = new Date(2026, 6, 21, 23, 59, 59).getTime()
       const difference = Math.max(0, targetDate - now)
 
       const days = Math.max(0, Math.floor(difference / (1000 * 60 * 60 * 24)))
