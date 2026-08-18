@@ -1,123 +1,47 @@
 "use client"
 
 import { useState } from "react"
-import { CheckCircle } from "lucide-react"
+import { CheckCircle, ShieldCheck, Wallet, Zap, Award, Star, Clock, AlertTriangle, Monitor, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import PurchaseModal from "./purchase-modal"
 
-const pricingOptions = [
-  {
-    title: "MINI",
-    price: "2 500$",
-    features: [
-      "kunlik zarar miqdori 4% - (100$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (150$) dan oshmasligi lozim",
-      "10% target (foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "370 000 UZS",
-    price_uzs: "350 000 UZS",
-    withdrawal: "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
-    platform: "Matchtrade | Metatrader 4/5",
-    featured: false,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "START",
-    price: "5 000$",
-    features: [
-      "kunlik zarar miqdori 4% - (200$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (300$) dan oshmasligi lozim",
-      "10% target (foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "650 000 UZS",
-    price_uzs: "600 000 UZS",
-    withdrawal: "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
-    platform: "Metatrader 4/5",
-    featured: false,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "START",
-    price: "10 000$",
-    features: [
-      "kunlik zarar miqdori 4% - (400$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (600$) dan oshmasligi lozim",
-      "10% target (1000$ foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "990 000 UZS",
-    price_uzs: "910 000 UZS",
-    withdrawal: "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
-    platform: "Matchtrade | Metatrader 4/5",
-    featured: true,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "STANDART",
-    price: "25 000$",
-    features: [
-      "kunlik zarar miqdori 4% - (1000$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (1500$) dan oshmasligi lozim",
-      "10% target (2500$ foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "1 970 000 UZS",
-    price_uzs: "1 800 000 UZS",
-    withdrawal: "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
-    platform: "Matchtrade | Metatrader 4/5",
-    featured: true,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "OMMAVIY",
-    price: "50 000$",
-    features: [
-      "kunlik zarar miqdori 4% - (2000$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (3000$) dan oshmasligi lozim",
-      "10% target (5000$ foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "4 000 000 UZS",
-    price_uzs: "3 800 000 UZS",
-    withdrawal: "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
-    platform: "Matchtrade | Metatrader 4/5",
-    featured: false,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
-  {
-    title: "PREMIUM",
-    price: "100 000$",
-    features: [
-      "kunlik zarar miqdori 4% - (4000$) dan oshmasligi lozim",
-      "umumiy zarar miqdori 6% - (6000$) dan oshmasligi lozim",
-      "10% target (10 000$ foyda qilish lozim)",
-      "70% - 80% qilingan daromaddan olinadigan ulush",
-    ],
-    oldPrice: "6 500 000 UZS",
-    price_uzs: "6 450 000 UZS",
-    withdrawal: "REALga o'tgach, 14 kundan so‘ng 80% daromadni chiqarish mumkin",
-    platform: "Metatrader 4/5",
-    featured: true,
-    discount_text: "",
-    button_text: "Prop hisobni sotib olish!",
-    available: true,
-  },
+// 1. REAL PREMIUM HISOBLAR (image copy 2.png)
+const realPremiumAccounts = [
+  { amount: "1 000$", price_uzs: "1 000 000 UZS", featured: false },
+  { amount: "2 500$", price_uzs: "1 500 000 UZS", featured: false },
+  { amount: "5 000$", price_uzs: "3 000 000 UZS", featured: false },
+  { amount: "10 000$", price_uzs: "5 500 000 UZS", featured: true },
+  { amount: "25 000$", price_uzs: "10 500 000 UZS", featured: true },
+  { amount: "50 000$", price_uzs: "20 000 000 UZS", featured: false },
+  { amount: "75 000$", price_uzs: "30 000 000 UZS", featured: false },
+  { amount: "100 000$", price_uzs: "45 000 000 UZS", featured: false },
+]
+
+// 2. IMTIHONLI HISOBLAR (image copy.png)
+const imtihonliAccounts = [
+  { amount: "5 000$", price_uzs: "800 000 UZS", featured: false },
+  { amount: "10 000$", price_uzs: "1 300 000 UZS", featured: false },
+  { amount: "15 000$", price_uzs: "1 800 000 UZS", featured: false },
+  { amount: "25 000$", price_uzs: "2 600 000 UZS", featured: true },
+  { amount: "50 000$", price_uzs: "4 500 000 UZS", featured: true },
+  { amount: "100 000$", price_uzs: "7 300 000 UZS", featured: false },
+  { amount: "200 000$", price_uzs: "12 500 000 UZS", featured: false },
+  { amount: "400 000$", price_uzs: "35 000 000 UZS", featured: false },
+]
+
+// 3. REAL LITE HISOBLAR (image.png)
+const realLiteAccounts = [
+  { amount: "2 500$", price_uzs: "500 000 UZS", dailyProfit: "15$ - 25$", featured: false },
+  { amount: "5 000$", price_uzs: "800 000 UZS", dailyProfit: "25$ - 50$", featured: false },
+  { amount: "10 000$", price_uzs: "1 700 000 UZS", dailyProfit: "50$ - 100$", featured: true },
+  { amount: "25 000$", price_uzs: "3 000 000 UZS", dailyProfit: "100$ - 250$", featured: true },
+  { amount: "50 000$", price_uzs: "5 000 000 UZS", dailyProfit: "250$ - 500$", featured: false },
 ]
 
 export default function PricingSection() {
+  const [activeTab, setActiveTab] = useState<"premium" | "imtihonli" | "lite">("premium")
+
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedAccount, setSelectedAccount] = useState({
     title: "",
@@ -135,154 +59,368 @@ export default function PricingSection() {
   }
 
   return (
-    <section id="pricing" className="py-16 md:py-24 scroll-mt-16">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-fade-in-up">
-            Imtihonli Proplar <span className="text-gray-400">(etapli)</span>
+    <section id="pricing" className="py-16 md:py-24 scroll-mt-16 bg-gradient-to-b from-black via-gray-900/90 to-black text-white relative overflow-hidden">
+      {/* Background Glow Effects */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center mb-10 md:mb-14">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-semibold mb-4">
+            <Award className="w-4 h-4" />
+            <span>PROP HISOBLAR KATALOGI</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+            O'zingizga mos <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-red-500">PROP hisobni</span> tanlang
           </h2>
-          <p className="text-lg text-gray-400 max-w-4xl mx-auto animate-fade-in-up animate-delay-200">
-            Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, hisobni nomingizga olib berish,
-            sizga ulab berish va unda savdo qilib berish ichiga kiritilgan!
+          <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+            Onlayn va offlayn yordam, konsultatsiya hamda rasmiylashtiruv xizmati bilan birga taklif etiladi.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {pricingOptions.map((option, index) => (
-            <div
-              key={`${option.title}-${index}`}
-              className={cn(
-                "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative",
-                "hover-lift animate-fade-in-up",
-                `animate-delay-${((index % 3) + 1) * 100}`,
-                option.featured
-                  ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
-                  : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
-                !option.available && "opacity-60 cursor-not-allowed",
-              )}
-            >
-              {option.featured && (
-                <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
-                  Tavsiya etiladi!
-                </span>
-              )}
-              <div className="text-center mb-6">
+        {/* Tab Switcher Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12 max-w-3xl mx-auto p-2 bg-gray-900/80 backdrop-blur-md rounded-2xl border border-gray-800 shadow-2xl">
+          <button
+            type="button"
+            onClick={() => setActiveTab("premium")}
+            className={cn(
+              "w-full sm:w-1/3 py-3.5 px-5 rounded-xl font-bold text-sm md:text-base transition-all duration-200 flex items-center justify-center space-x-2 select-none",
+              activeTab === "premium"
+                ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-900/40 scale-[1.02]"
+                : "text-gray-400 hover:text-white hover:bg-gray-800/60"
+            )}
+          >
+            <CrownIcon className="w-5 h-5" />
+            <span>REAL PREMIUM</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab("imtihonli")}
+            className={cn(
+              "w-full sm:w-1/3 py-3.5 px-5 rounded-xl font-bold text-sm md:text-base transition-all duration-200 flex items-center justify-center space-x-2 select-none",
+              activeTab === "imtihonli"
+                ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-900/40 scale-[1.02]"
+                : "text-gray-400 hover:text-white hover:bg-gray-800/60"
+            )}
+          >
+            <Zap className="w-5 h-5" />
+            <span>IMTIHONLI HISOBLAR</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab("lite")}
+            className={cn(
+              "w-full sm:w-1/3 py-3.5 px-5 rounded-xl font-bold text-sm md:text-base transition-all duration-200 flex items-center justify-center space-x-2 select-none",
+              activeTab === "lite"
+                ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-900/40 scale-[1.02]"
+                : "text-gray-400 hover:text-white hover:bg-gray-800/60"
+            )}
+          >
+            <ShieldCheck className="w-5 h-5" />
+            <span>REAL LITE HISOBLAR</span>
+          </button>
+        </div>
+
+        {/* Tab Panels Container — relative wrapper so inactive panels sit absolute,
+            keeping the container height stable and preventing any scroll jump */}
+        <div className="relative">
+          
+          {/* TAB 1: REAL PREMIUM HISOBLAR */}
+          <div
+            aria-hidden={activeTab !== "premium"}
+            className={cn(
+              "space-y-10 transition-opacity duration-300",
+              activeTab === "premium"
+                ? "relative opacity-100 pointer-events-auto"
+                : "absolute inset-x-0 top-0 opacity-0 pointer-events-none"
+            )}
+          >
+            {/* Rules Banner */}
+            <div className="grid md:grid-cols-3 gap-6 bg-gradient-to-r from-red-950/40 via-gray-900 to-gray-900 p-6 md:p-8 rounded-3xl border border-red-500/30">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-red-600/20 text-red-500 rounded-2xl border border-red-500/30">
+                  <AlertTriangle className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-red-400">Yagona Qoida: 8% Minus Qilmang</h4>
+                  <p className="text-sm text-gray-300 mt-1">Hisob balansingiz 8% dan ko'proq kamayishiga yo'l qo'ymang.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-blue-600/20 text-blue-400 rounded-2xl border border-blue-500/30">
+                  <Wallet className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-blue-300">Pul Yechish Imkoniyati</h4>
+                  <p className="text-sm text-gray-300 mt-1">Hisob olganingizdan 14 kundan keyin pul yechishingiz mumkin.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-emerald-600/20 text-emerald-400 rounded-2xl border border-emerald-500/30">
+                  <Monitor className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-emerald-300">Xizmat Haqilari</h4>
+                  <p className="text-sm text-gray-300 mt-1">Onlayn: <strong className="text-white">200 000 UZS</strong> | Offlayn: <strong className="text-white">300 000 UZS</strong></p>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid of Accounts — flex wrap so last row centers */}
+            <div className="flex flex-wrap justify-center gap-6">
+              {realPremiumAccounts.map((acc, idx) => (
                 <div
+                  key={`premium-${idx}`}
                   className={cn(
-                    "text-sm font-semibold uppercase tracking-wider mb-2",
-                    option.featured ? "text-blue-100" : "text-gray-400",
+                    "w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-1.5",
+                    acc.featured
+                      ? "bg-gradient-to-b from-gray-900 via-red-950/40 to-gray-900 border-2 border-red-500/80 shadow-xl shadow-red-950/50"
+                      : "bg-gray-900/60 border border-gray-800 hover:border-red-500/40 hover:bg-gray-900/90"
                   )}
                 >
-                  {option.title}
-                </div>
-                <div className="text-4xl md:text-5xl font-bold mb-4">{option.price}</div>
-              </div>
-
-              <div className="space-y-4 mb-8 flex-grow">
-                {option.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start space-x-3">
-                    <div
-                      className={cn(
-                        "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                        option.featured ? "bg-white/20" : "bg-blue-500",
-                      )}
-                    >
-                      <CheckCircle className="w-3 h-3 text-white" />
+                  {acc.featured && (
+                    <span className="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs font-bold uppercase rounded-full shadow-md">
+                      Eng Ko'p Tanlangan
+                    </span>
+                  )}
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-red-400 mb-1">REAL PREMIUM</div>
+                    <div className="text-3xl font-extrabold text-white mb-4">{acc.amount}</div>
+                    
+                    <div className="space-y-2 mb-6 text-sm text-gray-300">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-red-400 shrink-0" />
+                        <span>Maksimal minus: <strong>8%</strong></span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-red-400 shrink-0" />
+                        <span>Pul yechish: <strong>14 kun</strong></span>
+                      </div>
                     </div>
-                    <div className={cn("text-sm", option.featured ? "text-white" : "")}>{feature}</div>
                   </div>
-                ))}
-              </div>
 
-              <div className="text-center mb-6">
-                {option.oldPrice && (
-                  <div className={cn("line-through text-lg", option.featured ? "text-red-300" : "text-red-500")}>
-                    {option.oldPrice}
-                  </div>
-                )}
-                <div className={cn("font-semibold text-sm mb-1", option.featured ? "text-blue-100" : "text-blue-500")}>
-                  NARXI:
-                </div>
-                <div className={cn("text-2xl font-bold", option.featured ? "text-white" : "text-red-500")}>
-                  {option.price_uzs}
-                </div>
-                {option.discount_text && <div className="text-sm mt-1">{option.discount_text}</div>}
-              </div>
+                  <div>
+                    <div className="border-t border-gray-800 pt-4 mb-4 text-center">
+                      <div className="text-xs text-gray-400">HISOB NARXI</div>
+                      <div className="text-xl font-bold text-red-400 mt-0.5">{acc.price_uzs}</div>
+                    </div>
 
-              <div className="space-y-4 mb-4">
-                <div className="flex items-start space-x-3">
-                  <div
-                    className={cn(
-                      "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                      option.featured ? "bg-white/20" : "bg-blue-500",
-                    )}
-                  >
-                    <svg
-                      className={cn("w-3 h-3", option.featured ? "text-white" : "text-white")}
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
+                    <Button
+                      type="button"
+                      onClick={() => handleOpenModal("REAL PREMIUM", acc.price_uzs, acc.amount)}
+                      className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 rounded-xl shadow-lg transition-all"
                     >
-                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 21.95a9.95 9.95 0 110-19.9 9.95 9.95 0 010 19.9zm.384-6.208l.891-2.138a.511.511 0 00-.294-.695 6.7 6.7 0 01-2.04-.956c-.163-.109-.294-.287-.294-.506 0-.465.336-.778.84-.778.33 0 .593.149.794.307l.858-.982c-.556-.539-1.339-.778-1.713-.771v-1.098h-.84v1.098c-1.088.071-1.997.724-1.997 2.037 0 .956.57 1.473 1.57 1.87.723.294 1.231.537 1.231 1.01 0 .444-.425.703-1.003.703-.565 0-.986-.18-1.434-.578l-.725.94c.514.47 1.339.69 1.922.704v1.098h.84v-1.159c1.156-.075 1.942-.816 1.942-1.896 0-.736-.413-1.224-.898-1.519z"></path>
-                    </svg>
-                  </div>
-                  <div className="text-sm">
-                    <strong>Yechib olish: </strong>
-                    {option.withdrawal}
+                      Sotib olish
+                    </Button>
                   </div>
                 </div>
-
-                <div className="flex items-start space-x-3">
-                  <div
-                    className={cn(
-                      "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                      option.featured ? "bg-white/20" : "bg-blue-500",
-                    )}
-                  >
-                    <svg
-                      className={cn("w-3 h-3", option.featured ? "text-white" : "text-white")}
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M22 3H2v13.61h20V3zm0 2.44V6.5H2V5.44h20zM2 14.56V8.5h20v6.06H2z"></path>
-                      <path d="M16.53 13.13a.55.55 0 100-1.1.55.55 0 000 1.1zM14.22 13.13a.55.55 0 100-1.1.55.55 0 000 1.1zM11.94 13.13a.55.55 0 100-1.1.55.55 0 000 1.1z"></path>
-                    </svg>
-                  </div>
-                  <div className="text-sm">
-                    <strong>Savdo platformasi : </strong>
-                    {option.platform}
-                  </div>
-                </div>
-              </div>
-
-              <Button
-                className={cn(
-                  "w-full py-3 rounded-full font-semibold hover-lift",
-                  option.featured
-                    ? "bg-white text-blue-600 hover:bg-gray-100"
-                    : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
-                  !option.available && "bg-gray-600 hover:bg-gray-600 cursor-not-allowed",
-                )}
-                onClick={() => handleOpenModal(option.title, option.price_uzs, option.price)}
-                disabled={!option.available}
-              >
-                {option.available ? option.button_text : "Hozir mavjud emas"}
-              </Button>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="text-center mt-12 space-y-4">
-          <p className="text-gray-400 text-sm max-w-4xl mx-auto">
-            Barcha hisoblarni 10 daqiqa ichida rasmiylashtirlib sizga tezkor servis ko'rsatamiz! Karta orqali to'lov
-            qilasiz va yopiq guruhimiz a zosi hamda prop hisob egasi bo'lasiz va biz hisobingizda savdo jarayonlarini
-            boshlaymiz, natija qo'l ostingizda bo'ladi (
-            <span className="text-blue-400">barcha ma'lumotlar sizga taqdim etiladi 100%</span>) -
-          </p>
-          <p className="text-red-400 text-sm max-w-4xl mx-auto">
-            Imtihonli challenge prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar 4% kunlik 6% umumiy miqdorda
-            minus qilinsа kontrakt bekor qilinadi va prop hisob bloklandi va bu holatda javobgarlik u yoki bu shaxs
-            zimmasiga yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
-          </p>
+          {/* TAB 2: IMTIHONLI HISOBLAR */}
+          <div
+            aria-hidden={activeTab !== "imtihonli"}
+            className={cn(
+              "space-y-10 transition-opacity duration-300",
+              activeTab === "imtihonli"
+                ? "relative opacity-100 pointer-events-auto"
+                : "absolute inset-x-0 top-0 opacity-0 pointer-events-none"
+            )}
+          >
+            {/* Rules Banner */}
+            <div className="grid md:grid-cols-3 gap-6 bg-gradient-to-r from-blue-950/40 via-gray-900 to-gray-900 p-6 md:p-8 rounded-3xl border border-blue-500/30">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-blue-600/20 text-blue-400 rounded-2xl border border-blue-500/30">
+                  <ShieldCheck className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-blue-300">Zarar Limitlari</h4>
+                  <p className="text-sm text-gray-300 mt-1">Kunlik <strong>3%</strong> max zarar | Umumiy <strong>6%</strong> max zarar.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-cyan-600/20 text-cyan-400 rounded-2xl border border-cyan-500/30">
+                  <Zap className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-cyan-300">Foyda Maqsadi va Pul Yechish</h4>
+                  <p className="text-sm text-gray-300 mt-1">Target <strong>10%</strong>. Realga o'tgach darhol pul yechiladi + hisob puli qaytariladi.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-emerald-600/20 text-emerald-400 rounded-2xl border border-emerald-500/30">
+                  <Users className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-emerald-300">Xizmat Haqilari</h4>
+                  <p className="text-sm text-gray-300 mt-1">Onlayn: <strong className="text-white">200 000 UZS</strong> | Offlayn: <strong className="text-white">300 000 UZS</strong></p>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid of Accounts — flex wrap so last row centers */}
+            <div className="flex flex-wrap justify-center gap-6">
+              {imtihonliAccounts.map((acc, idx) => (
+                <div
+                  key={`imtihonli-${idx}`}
+                  className={cn(
+                    "w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-1.5",
+                    acc.featured
+                      ? "bg-gradient-to-b from-gray-900 via-blue-950/40 to-gray-900 border-2 border-cyan-500/80 shadow-xl shadow-blue-950/50"
+                      : "bg-gray-900/60 border border-gray-800 hover:border-cyan-500/40 hover:bg-gray-900/90"
+                  )}
+                >
+                  {acc.featured && (
+                    <span className="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-bold uppercase rounded-full shadow-md">
+                      Tavsiya Etiladi
+                    </span>
+                  )}
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-1">IMTIHONLI HISOB</div>
+                    <div className="text-3xl font-extrabold text-white mb-4">{acc.amount}</div>
+
+                    <div className="space-y-2 mb-6 text-sm text-gray-300">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>Kunlik zarar: <strong>3% max</strong></span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>Umumiy zarar: <strong>6% max</strong></span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>Foyda maqsadi: <strong>10% target</strong></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="border-t border-gray-800 pt-4 mb-4 text-center">
+                      <div className="text-xs text-gray-400">HISOB NARXI</div>
+                      <div className="text-xl font-bold text-cyan-400 mt-0.5">{acc.price_uzs}</div>
+                    </div>
+
+                    <Button
+                      type="button"
+                      onClick={() => handleOpenModal("IMTIHONLI HISOB", acc.price_uzs, acc.amount)}
+                      className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-3 rounded-xl shadow-lg transition-all"
+                    >
+                      Sotib olish
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* TAB 3: REAL LITE HISOBLAR */}
+          <div
+            aria-hidden={activeTab !== "lite"}
+            className={cn(
+              "space-y-10 transition-opacity duration-300",
+              activeTab === "lite"
+                ? "relative opacity-100 pointer-events-auto"
+                : "absolute inset-x-0 top-0 opacity-0 pointer-events-none"
+            )}
+          >
+            {/* Rules Banner */}
+            <div className="grid md:grid-cols-3 gap-6 bg-gradient-to-r from-purple-950/40 via-gray-900 to-gray-900 p-6 md:p-8 rounded-3xl border border-purple-500/30">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-purple-600/20 text-purple-400 rounded-2xl border border-purple-500/30">
+                  <ShieldCheck className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-purple-300">Zarar Limitlari</h4>
+                  <p className="text-sm text-gray-300 mt-1">Kunlik minus <strong>3%</strong> max | Umumiy minus <strong>4%</strong> max.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-indigo-600/20 text-indigo-400 rounded-2xl border border-indigo-500/30">
+                  <Clock className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-indigo-300">Pul Yechish Muddatlari</h4>
+                  <p className="text-sm text-gray-300 mt-1">Birinchi savdo ochilgan kundan 10 kundan keyin pul yechish mumkin.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-emerald-600/20 text-emerald-400 rounded-2xl border border-emerald-500/30">
+                  <Monitor className="w-7 h-7" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-emerald-300">Xizmat Haqilari</h4>
+                  <p className="text-sm text-gray-300 mt-1">Onlayn: <strong className="text-white">200 000 UZS</strong> | Offlayn: <strong className="text-white">300 000 UZS</strong></p>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid of Accounts — flex wrap so last row (2 cards) centers */}
+            <div className="flex flex-wrap justify-center gap-6">
+              {realLiteAccounts.map((acc, idx) => (
+                <div
+                  key={`lite-${idx}`}
+                  className={cn(
+                    "w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-1.5",
+                    acc.featured
+                      ? "bg-gradient-to-b from-gray-900 via-purple-950/40 to-gray-900 border-2 border-purple-500/80 shadow-xl shadow-purple-950/50"
+                      : "bg-gray-900/60 border border-gray-800 hover:border-purple-500/40 hover:bg-gray-900/90"
+                  )}
+                >
+                  {acc.featured && (
+                    <span className="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-500 text-white text-xs font-bold uppercase rounded-full shadow-md">
+                      Ommabop Lite
+                    </span>
+                  )}
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-purple-400 mb-1">REAL LITE HISOB</div>
+                    <div className="text-3xl font-extrabold text-white mb-4">{acc.amount}</div>
+
+                    <div className="space-y-3 mb-6 text-sm text-gray-300">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-purple-400 shrink-0" />
+                        <span>Kunlik minus: <strong>3% max</strong></span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-4 h-4 text-purple-400 shrink-0" />
+                        <span>Umumiy minus: <strong>4% max</strong></span>
+                      </div>
+                      <div className="p-3 bg-purple-900/30 rounded-xl border border-purple-500/20 text-xs">
+                        <div className="text-purple-300 font-semibold mb-1">Kun Stabil Daromad Chegarasi:</div>
+                        <div className="text-base font-bold text-white">{acc.dailyProfit}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="border-t border-gray-800 pt-4 mb-4 text-center">
+                      <div className="text-xs text-gray-400">HISOB NARXI</div>
+                      <div className="text-xl font-bold text-purple-400 mt-0.5">{acc.price_uzs}</div>
+                    </div>
+
+                    <Button
+                      type="button"
+                      onClick={() => handleOpenModal("REAL LITE HISOB", acc.price_uzs, acc.amount)}
+                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl shadow-lg transition-all"
+                    >
+                      Sotib olish
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -293,7 +431,23 @@ export default function PricingSection() {
         accountTitle={selectedAccount.title}
         accountPrice={selectedAccount.price}
         accountAmount={selectedAccount.amount}
+        activeTab={activeTab}
       />
     </section>
+  )
+}
+
+function CrownIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 16L3 5l5.5 5L12 3l3.5 7L21 5l-2 11H5z" />
+    </svg>
   )
 }

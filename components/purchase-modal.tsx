@@ -13,6 +13,40 @@ interface PurchaseModalProps {
   accountTitle: string
   accountPrice: string
   accountAmount: string
+  activeTab?: "premium" | "imtihonli" | "lite"
+}
+
+const themeStyles = {
+  premium: {
+    border: "border-red-500/60",
+    glow: "shadow-red-950/50",
+    headerBg: "bg-gradient-to-r from-red-950/60 via-red-900/30 to-gray-900 border border-red-500/30",
+    titleAccent: "text-red-400",
+    btnGradient: "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600",
+    focusRing: "focus:ring-red-500",
+    linkText: "text-red-400",
+    checkbox: "text-red-600 focus:ring-red-500",
+  },
+  imtihonli: {
+    border: "border-cyan-500/60",
+    glow: "shadow-cyan-950/50",
+    headerBg: "bg-gradient-to-r from-blue-950/60 via-cyan-900/30 to-gray-900 border border-cyan-500/30",
+    titleAccent: "text-cyan-400",
+    btnGradient: "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500",
+    focusRing: "focus:ring-cyan-500",
+    linkText: "text-cyan-400",
+    checkbox: "text-cyan-600 focus:ring-cyan-500",
+  },
+  lite: {
+    border: "border-purple-500/60",
+    glow: "shadow-purple-950/50",
+    headerBg: "bg-gradient-to-r from-purple-950/60 via-indigo-900/30 to-gray-900 border border-purple-500/30",
+    titleAccent: "text-purple-400",
+    btnGradient: "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500",
+    focusRing: "focus:ring-purple-500",
+    linkText: "text-purple-400",
+    checkbox: "text-purple-600 focus:ring-purple-500",
+  },
 }
 
 export default function PurchaseModal({
@@ -21,6 +55,7 @@ export default function PurchaseModal({
   accountTitle,
   accountPrice,
   accountAmount,
+  activeTab,
 }: PurchaseModalProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -203,12 +238,15 @@ export default function PurchaseModal({
   const fee = isPromoWaiveFee ? 0 : 200000
   const totalPayment = finalPrice + fee
 
+  const tabKey = activeTab || (accountTitle.includes("PREMIUM") ? "premium" : accountTitle.includes("LITE") ? "lite" : "imtihonli")
+  const theme = themeStyles[tabKey] || themeStyles.premium
+
   if (!isOpen) return null
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl w-full max-w-sm md:max-w-lg lg:max-w-xl relative border border-gray-700 shadow-2xl animate-fade-in-up max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+      <div className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-2 sm:p-4">
+        <div className={`bg-gradient-to-br from-gray-900 via-gray-900 to-black rounded-2xl w-full max-w-sm md:max-w-lg lg:max-w-xl relative border ${theme.border} shadow-2xl ${theme.glow} animate-fade-in-up max-h-[95vh] sm:max-h-[90vh] overflow-y-auto`}>
           <button
             onClick={onClose}
             className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors z-10"
@@ -219,11 +257,11 @@ export default function PurchaseModal({
           <div className="p-4 md:p-5 lg:p-6">
             {!isSubmitted ? (
               <>
-                <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl p-3 md:p-4 mb-4 md:mb-5">
+                <div className={`${theme.headerBg} rounded-xl p-4 md:p-5 mb-4 md:mb-5 shadow-inner`}>
                   <h2 className="text-lg md:text-xl font-bold text-center text-white mb-1">
                     {accountAmount} lik
                     <br />
-                    <span className="text-blue-400">{accountTitle}</span> hisob
+                    <span className={theme.titleAccent}>{accountTitle}</span> hisob
                     <br />
                     sotib olish
                   </h2>
@@ -245,7 +283,7 @@ export default function PurchaseModal({
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                        className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 ${theme.focusRing} focus:border-transparent text-sm`}
                         placeholder="Ismingizni kiriting"
                       />
                     </div>
@@ -261,7 +299,7 @@ export default function PurchaseModal({
                         value={formData.address}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                        className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 ${theme.focusRing} focus:border-transparent text-sm`}
                         placeholder="Manzilingizni kiriting"
                       />
                     </div>
@@ -277,7 +315,7 @@ export default function PurchaseModal({
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                        className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 ${theme.focusRing} focus:border-transparent text-sm`}
                         placeholder="Email manzilingiz"
                       />
                     </div>
@@ -293,7 +331,7 @@ export default function PurchaseModal({
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                        className={`w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 ${theme.focusRing} focus:border-transparent text-sm`}
                         placeholder="+998 90 123 45 67"
                       />
                     </div>
@@ -307,14 +345,14 @@ export default function PurchaseModal({
                             type="checkbox"
                             checked={isOfferAccepted}
                             onChange={(e) => setIsOfferAccepted(e.target.checked)}
-                            className="h-4 w-4 rounded border-gray-600 bg-gray-700 text-blue-600 focus:ring-blue-500 focus:ring-offset-gray-900"
+                            className={`h-4 w-4 rounded border-gray-600 bg-gray-700 ${theme.checkbox} focus:ring-offset-gray-900`}
                           />
                         </div>
                         <div className="text-xs md:text-sm">
                           <button
                             type="button"
                             onClick={() => setIsOfferModalOpen(true)}
-                            className="font-medium text-blue-400 hover:underline flex items-center gap-1"
+                            className={`font-medium ${theme.linkText} hover:underline flex items-center gap-1`}
                           >
                             <FileText className="w-3 h-3 md:w-4 md:h-4" />
                             Ommaviy oferta shartlariga roziman
@@ -329,7 +367,7 @@ export default function PurchaseModal({
                     <Button
                       type="submit"
                       disabled={!isOfferAccepted}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-2.5 sm:py-3 rounded-lg font-medium transition-all duration-300 mt-3 sm:mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`w-full ${theme.btnGradient} text-white py-2.5 sm:py-3 rounded-lg font-medium transition-all duration-300 mt-3 sm:mt-4 disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       <div className="flex items-center justify-center space-x-2">
                         <Send className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -510,7 +548,7 @@ export default function PurchaseModal({
                   </form>
                 )}
 
-                <p className="text-center text-xs md:text-sm text-blue-400 mt-3 md:mt-4">
+                <p className={`text-center text-xs md:text-sm ${theme.titleAccent} mt-3 md:mt-4`}>
                   {currentStep === "form"
                     ? "Ma'lumotlarni to'ldirgach to'lov qismiga o'tasiz!"
                     : "To'lovni amalga oshirgach chekni yuklang!"}

@@ -1,8 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-// Fallback to hardcoded values if environment variables are not set
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8105645545:AAEQzQv7sgGiM8cq9wc_mg6I5h2ubuzBCmQ"
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "-1002679316202"
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID
 
 export async function POST(request: NextRequest) {
   try {
@@ -78,8 +77,9 @@ ${paymentReceipt ? "💳 *To'lov cheki:* Yuklangan" : ""}
     // Send to Telegram
     try {
       console.log("Sending to Telegram...")
-
-      if (paymentReceipt) {
+      if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+        console.error("TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID environment variable is missing")
+      } else if (paymentReceipt) {
         // Send photo with caption
         const photoFormData = new FormData()
         photoFormData.append("chat_id", TELEGRAM_CHAT_ID)
