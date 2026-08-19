@@ -125,7 +125,7 @@ export default function MobileMenu({ scrollToSection, refs }: MobileMenuProps) {
 
               <div className="pt-6 flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-blue-400" />
-                <span className="text-lg font-medium">+998 50 001 29 59</span>
+                <span className="text-lg font-medium">{process.env.NEXT_PUBLIC_PHONE_NUMBER || "+998 87 460 06 00"}</span>
               </div>
 
               <Button

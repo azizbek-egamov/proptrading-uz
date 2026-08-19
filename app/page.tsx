@@ -231,7 +231,7 @@ export default function PropTradingLanding() {
           <div className="flex items-center space-x-4">
             <div className="hidden lg:flex items-center space-x-2 text-sm">
               <Phone className="w-4 h-4 text-blue-400" />
-              <span>{process.env.NEXT_PUBLIC_PHONE_NUMBER}</span>
+              <span>{process.env.NEXT_PUBLIC_PHONE_NUMBER || "+998 87 460 06 00"}</span>
             </div>
             {!isMobile && (
               <>
