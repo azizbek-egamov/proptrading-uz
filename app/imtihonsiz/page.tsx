@@ -2,111 +2,11 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, CheckCircle, DollarSign, TrendingUp } from "lucide-react"
+import { ArrowLeft, CheckCircle, Crown, AlertTriangle, ShieldCheck, Calendar, Infinity as InfinityIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import PurchaseModal from "@/components/purchase-modal"
-
-const fundedAccounts = [
-  {
-    title: "MINI",
-    amount: "1 000$",
-    features: [
-      "8% umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "",
-    price: "1 100 000 UZS",
-    platform: "Ctrader",
-    featured: false,
-    available: true,
-  },
-  {
-    title: "MINI",
-    amount: "2 500$",
-    features: [
-      "8% umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "",
-    price: "1 800 000 UZS",
-    platform: "Metatrader 5",
-    featured: false,
-    available: true,
-  },
-  {
-    title: "START+",
-    amount: "5 000$",
-    features: [
-      "8% umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "",
-    price: "3 300 000 UZS",
-    platform: "Ctrader",
-    featured: true,
-    available: true,
-  },
-  {
-    title: "START+",
-    amount: "10 000$",
-    features: [
-      "8% umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "",
-    price: "6 000 000 UZS",
-    platform: "Metatrader 5",
-    featured: false,
-    available: true,
-  },
-  {
-    title: "MEDIUM",
-    amount: "25 000$",
-    features: [
-      "8% umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "",
-    price: "12 000 000 UZS",
-    platform: "Metatrader 5",
-    featured: true,
-    available: true,
-  },
-  {
-    title: "PREMIUM",
-    amount: "50 000$",
-    features: [
-      "8% umumiy yo'qotish bo'lmasligi lozim!",
-      "Yo'q - target (foyda chegarasi yo'q)",
-      "80% gacha qilingan daromaddan olinadigan ulushingiz",
-    ],
-    oldPrice: "",
-    price: "23 000 000 UZS",
-    platform: "Metatrader 5",
-    featured: false,
-    available: true,
-  },
-  // {
-  //   title: "VIP",
-  //   amount: "100 000$",
-  //   features: [
-  //     "8% umumiy yo'qotish bo'lmasligi lozim!",
-  //     "Yo'q - target (foyda chegarasi yo'q)",
-  //     "80% gacha qilingan daromaddan olinadigan ulushingiz",
-  //   ],
-  //   oldPrice: "",
-  //   price: "10 000 000 UZS",
-  //   platform: "Metatrader 5",
-  //   featured: false,
-  //   available: true,
-  // },
-]
+import { realImtihonsizAccounts } from "@/components/pricing-section"
 
 export default function ImtihonsizPricingPage() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -126,168 +26,119 @@ export default function ImtihonsizPricingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-850 text-white">
       {/* Header */}
       <div className="container mx-auto px-4 md:px-8 py-8">
-        <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8">
+        <Link href="/" className="inline-flex items-center text-red-400 hover:text-red-300 mb-8 font-semibold">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Bosh sahifaga qaytish
         </Link>
 
         <div className="text-center mb-12 md:mb-16">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
-            Premium Imtihonsiz tayyor REAL proplar
-            <br />
-            <span className="text-lg text-gray-400">(etapsiz, imtihondan o'tilgan, tayyor akkauntlar)</span>
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs md:text-sm font-semibold mb-4">
+            <Crown className="w-4 h-4 text-yellow-400" />
+            <span>XORAZM FX PROFESSIONAL PROP TRADING</span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-rose-200 to-red-500">
+            REAL IMTIHONsiz hisoblar
           </h1>
-          <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-            Narxlar servis xizmatlari bilan hisoblangan, bular ichiga konsultatsiya, kuchli signal beruvchi bitta
-            indikator, hisobni nomingizga olib berish va pul yechish jarayonlarida ko'maklashish kiritilgan!
+          <p className="text-red-300 font-medium text-lg max-w-2xl mx-auto">
+            Darhol real hisob bilan savdo qiling va daromad oling!
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8">
-          {fundedAccounts.map((account, index) => (
+        {/* Rules Highlight */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12 max-w-6xl mx-auto">
+          <div className="bg-gray-900/80 border border-red-500/30 p-5 rounded-2xl">
+            <div className="text-2xl font-black text-red-400">21 KUN</div>
+            <div className="text-white font-bold text-sm mt-1">Birinchi pul yechish</div>
+            <p className="text-xs text-gray-400 mt-1">21 kundan keyin birinchi payoutni oling</p>
+          </div>
+          <div className="bg-gray-900/80 border border-red-500/30 p-5 rounded-2xl">
+            <div className="text-2xl font-black text-red-400">14 KUN</div>
+            <div className="text-white font-bold text-sm mt-1">Keyingi yechishlar</div>
+            <p className="text-xs text-gray-400 mt-1">Har 14 kunda muntazam pul yechish</p>
+          </div>
+          <div className="bg-gray-900/80 border border-yellow-500/30 p-5 rounded-2xl">
+            <div className="text-2xl font-black text-yellow-400">IMTIHONSIZ</div>
+            <div className="text-white font-bold text-sm mt-1">Darhol real hisob</div>
+            <p className="text-xs text-gray-400 mt-1">Bosqichlarsiz haqiqiy savdo</p>
+          </div>
+          <div className="bg-gray-900/80 border border-emerald-500/30 p-5 rounded-2xl">
+            <div className="text-2xl font-black text-emerald-400">CHEKSIZ</div>
+            <div className="text-white font-bold text-sm mt-1">Cheklanmagan payoutlar</div>
+            <p className="text-xs text-gray-400 mt-1">Daromad chegaralanmagan</p>
+          </div>
+        </div>
+
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
+          {realImtihonsizAccounts.map((account, index) => (
             <div
-              key={`${account.title}-${index}`}
+              key={index}
               className={cn(
-                "rounded-2xl p-6 md:p-8 transition-all duration-300 h-full flex flex-col relative",
-                `animate-delay-${((index % 3) + 1) * 100}`,
+                "rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group hover:-translate-y-2",
                 account.featured
-                  ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105 border-2 border-blue-400 shadow-lg"
-                  : "bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-gray-600 hover-glow",
-                !account.available && "opacity-60 cursor-not-allowed",
+                  ? "bg-gradient-to-b from-gray-900 via-red-950/50 to-gray-900 border-2 border-red-500 shadow-2xl shadow-red-950/50"
+                  : "bg-gray-900/70 border border-gray-800 hover:border-red-500/50"
               )}
             >
-              {account.featured && (
-                <span className="absolute top-0 right-0 -mt-3 -mr-3 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold uppercase rounded-full shadow-md rotate-6">
-                  Tavsiya etiladi!
+              {account.badge && (
+                <span className="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-red-600 to-rose-500 text-white text-xs font-bold uppercase rounded-full shadow-lg">
+                  {account.badge}
                 </span>
               )}
-              <div className="text-center mb-6">
-                <div
-                  className={cn(
-                    "text-sm font-semibold uppercase tracking-wider mb-2",
-                    account.featured ? "text-blue-100" : "text-gray-400",
-                  )}
+
+              <div>
+                <div className="text-xs font-bold uppercase tracking-wider text-red-400 mb-1">
+                  REAL IMTIHONSIZ
+                </div>
+                <div className="text-3xl md:text-4xl font-black text-white mb-4">{account.amount}</div>
+
+                <div className="space-y-3 mb-6 bg-black/40 p-4 rounded-xl border border-gray-800 text-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Kunlik minus:</span>
+                    <strong className="text-white">{account.dailyLoss} ({account.dailyLossAmount})</strong>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Umumiy minus:</span>
+                    <strong className="text-white">{account.totalLoss} ({account.totalLossAmount})</strong>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">1-pul yechish:</span>
+                    <strong className="text-yellow-400">{account.firstPayout}</strong>
+                  </div>
+                  <div className="pt-2 border-t border-gray-800 text-xs text-red-300">
+                    Keyingi pul yechishlar har 14 kunda
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="border-t border-gray-800 pt-4 mb-4 text-center">
+                  <div className="text-xs text-gray-400 uppercase font-semibold">NARXI (UZS)</div>
+                  <div className="text-2xl font-black text-red-400 mt-1">{account.price_uzs}</div>
+                </div>
+
+                <Button
+                  onClick={() => handleOpenModal("REAL IMTIHONSIZ HISOB", account.price_uzs, account.amount)}
+                  className="w-full bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-bold py-3.5 rounded-xl shadow-lg"
                 >
-                  {account.title}
-                </div>
-                <div className="text-4xl md:text-5xl font-bold mb-4">{account.amount}</div>
-                <div className="w-12 h-0.5 bg-blue-500 mx-auto"></div>
-              </div>
-
-              <div className="space-y-4 mb-8 flex-grow">
-                {account.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start space-x-3">
-                    <div
-                      className={cn(
-                        "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                        account.featured ? "bg-white/20" : "bg-blue-500",
-                      )}
-                    >
-                      <CheckCircle className="w-3 h-3 text-white" />
-                    </div>
-                    <div className="text-sm">{feature}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center mb-6">
-                <div className={cn("font-semibold text-sm mb-1", account.featured ? "text-blue-100" : "text-blue-500")}>
-                  NARXI:
-                </div>
-                {account.oldPrice && (
-                  <div className={cn("line-through text-lg mb-1", account.featured ? "text-red-300" : "text-red-500")}>
-                    {account.oldPrice}
-                  </div>
-                )}
-                <div className={cn("text-2xl font-bold", account.featured ? "text-white" : "text-red-500")}>
-                  {account.price}
-                </div>
-              </div>
-
-              <div className="space-y-4 mb-6">
-                <div className="flex items-start space-x-3">
-                  <div
-                    className={cn(
-                      "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                      account.featured ? "bg-white/20" : "bg-blue-500",
-                    )}
-                  >
-                    <DollarSign className="w-3 h-3 text-white" />
-                  </div>
-                  <div className="text-sm">
-                    <strong>Yechib olish: </strong>
-                    qilingan foydadan 14 kundan keyin yechishga so'rov bera olasiz
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <div
-                    className={cn(
-                      "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                      account.featured ? "bg-white/20" : "bg-blue-500",
-                    )}
-                  >
-                    <TrendingUp className="w-3 h-3 text-white" />
-                  </div>
-                  <div className="text-sm">
-                    <strong>Savdo platformasi: </strong>
-                    {account.platform}
-                  </div>
-                </div>
-              </div>
-
-              <Button
-                className={cn(
-                  "w-full py-3 rounded-full font-semibold mb-4",
-                  account.featured
-                    ? "bg-white text-blue-600 hover:bg-gray-100"
-                    : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white",
-                  !account.available && "bg-gray-600 hover:bg-gray-600 cursor-not-allowed",
-                )}
-                onClick={() => handleOpenModal(account.title, account.price, account.amount)}
-                disabled={!account.available}
-              >
-                {account.available ? "Prop hisobni sotib olish!" : "Hozir mavjud emas"}
-              </Button>
-
-              <div className="text-center">
-                <h4 className={cn("font-bold text-sm", account.featured ? "text-white" : "text-yellow-400")}>
-                  SIGNAL BERUVCHI
-                  <br />
-                  INDIKATOR SOVG'A 🎁
-                </h4>
+                  Sotib olish
+                </Button>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="text-center mt-12 space-y-4">
-          <p className="text-gray-400 text-sm max-w-4xl mx-auto">
-            <strong>Barcha hisoblarni 10 daqiqa ichida rasmiylashtirib sizga tezkor servis ko'rsatamiz!</strong>
-            Karta orqali to'lov qilasiz va yopiq guruhimiz a'zosi hamda prop hisob egasi bo'lasiz va biz hisobingizda
-            savdo jarayonlarini boshlaymiz, natija qo'l ostingizda bo'ladi{" "}
-            <span className="text-blue-400">(barcha ma'lumotlar sizga taqdim etiladi 100%) -</span>
-          </p>
-          <p className="text-red-400 text-sm max-w-4xl mx-auto">
-            <strong>
-              Imtihonsiz real prop hisoblarda, qaysi jarayonda bo'lishidan qat'iy nazar umumiy miqdorda 8% minus qilinsa
-              kontrakt bekor qilinadi va prop hisob bloklanadi va bu holatda javobgarlik u yoki bu shaxs zimmasiga
-              yuklatilmaydi, mijoz boshqa yangi prop hisob sotib olsagina savdolar davom ettiriladi!
-            </strong>
-          </p>
-        </div>
       </div>
 
-      {/* Purchase Modal */}
       <PurchaseModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         accountTitle={selectedAccount.title}
         accountPrice={selectedAccount.price}
         accountAmount={selectedAccount.amount}
+        activeTab="imtihonsiz"
       />
     </div>
   )

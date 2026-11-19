@@ -43,6 +43,16 @@ const faqs = [
             "Barcha to‘lovlar to‘g‘ridan-to‘g‘ri prop-kompaniyadan — sizning hisobingizga, ularning qoidalari bo‘yicha amalga oshiriladi.",
     },
     {
+        question: "Imtihonli prop hisobda to'lov qanday qaytariladi?",
+        answer:
+            "Imtihonli hisobda 9% profit qilib real bosqichga o'tganingizdan so'ng, birinchi daromad yechish (payout) vaqtida prop hisob uchun to'langan mablag' 100% to'liq qaytariladi.",
+    },
+    {
+        question: "Real imtihonsiz hisobda pul yechish tartibi qanday?",
+        answer:
+            "Real imtihonsiz hisoblarda birinchi pul yechish 21 kundan keyin, keyingi pul yechishlar esa har 14 kunda amalga oshiriladi va payoutlar soni cheklanmagan.",
+    },
+    {
         question: "Agar prop-kompaniya qoidalarini buzsam nima bo‘ladi?",
         answer:
             "Muhim: qoidalarni ancha qat’iy bajaring. Biz qoidalarni oldindan tushuntiramiz, lekin savdo bo‘yicha javobgarlik sizga tegishli.",

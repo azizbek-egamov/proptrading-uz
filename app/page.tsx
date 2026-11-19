@@ -30,45 +30,27 @@ const PricingSection = lazy(() => import("@/components/pricing-section"))
 
 // Matnlar JSON formatda
 const messages = [
-  "Islom 5 000$lik hisobdan 237$ yechdi.",
-  "Anvar 25 000$lik hisob xarid qildi!",
-  "Laylo 10 000$ challenge'ni muvaffaqiyatli yakunladi — bonus olindi.",
-  "Jamshid 2 000$ bilan 1 200$ foyda chiqardi.",
-  "Sardor VIP ga o'tib, 50% imtiyoz oldi.",
-  "Nilufar 1 500$dan 300$ yechdi — chiqish muvaffaqiyatli.",
-  "Bek 50 000$lik prop'ni sotib oldi — welcome aboard!",
-  "Malika Start paketini oldi — o'qish boshlandi.",
-  "Farhod 7 kun ichida 18% ROI ko'rsatdi.",
-  "Shoxrux 3,200$ balansni 740$ ga ko'paytirdi.",
-  "Diyor 10 000$ challenge'ni PASS qildi — real account ochildi.",
-  "Saida profitni yechib, 420$ olindi.",
-  "Odil demo'dan realga o'tdi — tabrik!",
-  "Yusuf 25$ depozit qildi — start olindi.",
-  "Nil 15 000$ hisobni sotib oldi — level up.",
-  "Aziza 2 ta pullik modulni sotib oldi — bilim +1.",
-  "Kamol 5 000$ challenge'dan 500$ yechdi — nice.",
-  "Alisher PRO paket + prop application yubordi.",
-  "Shirin 900$ foyda olib, hisobni yechdi.",
-  "Javlon 30-kun ichida 12% konsistensiya ko'rsatdi.",
-  "Zebo VIP-kanalga obuna bo'ldi — premium signals.",
-  "Umid 50$ depozit olib test boshladi.",
-  "Nodir 100% pass — prop'ga yo'l ochildi.",
-  "Lola 1,000$ bilan 150$ foyda oldi.",
-  "Mirzam 20 000$ hisobni sotib oldi — big move.",
-  "Saodat challenge'dan 0% drawdown bilan o'tdi.",
-  "Aziz 3 ta kun ichida 2x growth — shunchaki ajoyib.",
-  "Shahnoza 2,500$ yechdi — balans yangilandi.",
-  "Orif 10 000$ hisobni qayta aktiv qildi.",
-  "Dilshod PRO robotni xarid qildi — avtomatik scalping.",
-  "Feruza copy-trade funksiyasini yoqdi — follower+1.",
-  "Botir 400$ profitni yechib, tashrif buyurdi.",
-  "Nodira 5 kun ichida 7% growth — konsistensiya yaxshi.",
-  "Qodir 12 000$ challenge'ni olgan — imkoniyat katta.",
-  "Maftuna 250$ depozit qilib, demo'dan realga o'tdi.",
-  "Ikrom 800$ profit bilan hisobni yechdi.",
-  "Sherzod VIP-mentor bilan 1:1 sessiya oldi.",
-  "Dilbar 3-kurs modulini tugatdi — sertifikat tayyor.",
-  "Ravshan 15 000$ accountni qayta sotib oldi.",
+  "Islom 12 500$lik hisobdan 1 125$ yechdi.",
+  "Anvar 25 000$lik imtihonli hisob xarid qildi!",
+  "Laylo 10 000$ real imtihonsiz hisob bilan savdoni boshladi.",
+  "Jamshid 50 000$ bilan 4 500$ foyda chiqardi.",
+  "Sardor 200 000$ VIP hisobga o'tib, daromad oldi.",
+  "Nilufar 25 000$dan 2 250$ yechdi — chiqish muvaffaqiyatli.",
+  "Bek 100 000$lik prop hisobni sotib oldi — welcome aboard!",
+  "Farhod 14 kun ichida 15% daromad ko'rsatdi.",
+  "Diyor 12 500$ 9% profit qilib realga o'tdi — to'lov qaytarildi!",
+  "Saida 50 000$ hisobdan payout oldi.",
+  "Odil real hisobdan birinchi daromadini yechdi — tabrik!",
+  "Kamol 10 000$ real hisobdan 900$ yechdi — nice.",
+  "Shirin 25 000$ hisobdan 1 800$ foyda oldi.",
+  "Javlon 100 000$ bilan cheklanmagan payoutga chiqdi.",
+  "Nodir 9% profitni bajardi — prop puli 100% qaytarildi.",
+  "Shahnoza 50 000$ hisobdan 3 200$ yechdi.",
+  "Orif 25 000$ real hisobni aktiv qildi.",
+  "Botir 200 000$ hisobdan birinchi payoutni yechdi.",
+  "Qodir 12 500$ imtihonli hisob bilan start oldi.",
+  "Ikrom 50 000$ hisob bilan muvaffaqiyatli savdo qilyapti.",
+  "Ravshan 100 000$ real hisobni xarid qildi.",
 ]
 
 export default function PropTradingLanding() {
@@ -258,7 +240,7 @@ export default function PropTradingLanding() {
             <div className="space-y-6 md:space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in-left text-shadow-lg">
-                  5000$ dan 400 000$ gacha <span className="text-blue-400 font-bold">TREYDINGda SAVDO</span> uchun hisoblar!
+                  10 000$ dan 200 000$ gacha <span className="text-blue-400 font-bold">TREYDINGda SAVDO</span> uchun hisoblar!
                 </h1>
               </div>
 

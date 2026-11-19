@@ -13,10 +13,30 @@ interface PurchaseModalProps {
   accountTitle: string
   accountPrice: string
   accountAmount: string
-  activeTab?: "premium" | "imtihonli" | "lite"
+  activeTab?: "premium" | "imtihonli" | "lite" | "imtihonsiz"
 }
 
 const themeStyles = {
+  imtihonli: {
+    border: "border-cyan-500/60",
+    glow: "shadow-cyan-950/50",
+    headerBg: "bg-gradient-to-r from-blue-950/60 via-cyan-900/30 to-gray-900 border border-cyan-500/30",
+    titleAccent: "text-cyan-400",
+    btnGradient: "bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 hover:from-blue-500 hover:to-cyan-500",
+    focusRing: "focus:ring-cyan-500",
+    linkText: "text-cyan-400",
+    checkbox: "text-cyan-600 focus:ring-cyan-500",
+  },
+  imtihonsiz: {
+    border: "border-red-500/60",
+    glow: "shadow-red-950/50",
+    headerBg: "bg-gradient-to-r from-red-950/60 via-rose-900/30 to-gray-900 border border-red-500/30",
+    titleAccent: "text-red-400",
+    btnGradient: "bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600",
+    focusRing: "focus:ring-red-500",
+    linkText: "text-red-400",
+    checkbox: "text-red-600 focus:ring-red-500",
+  },
   premium: {
     border: "border-red-500/60",
     glow: "shadow-red-950/50",
@@ -26,16 +46,6 @@ const themeStyles = {
     focusRing: "focus:ring-red-500",
     linkText: "text-red-400",
     checkbox: "text-red-600 focus:ring-red-500",
-  },
-  imtihonli: {
-    border: "border-cyan-500/60",
-    glow: "shadow-cyan-950/50",
-    headerBg: "bg-gradient-to-r from-blue-950/60 via-cyan-900/30 to-gray-900 border border-cyan-500/30",
-    titleAccent: "text-cyan-400",
-    btnGradient: "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500",
-    focusRing: "focus:ring-cyan-500",
-    linkText: "text-cyan-400",
-    checkbox: "text-cyan-600 focus:ring-cyan-500",
   },
   lite: {
     border: "border-purple-500/60",
@@ -238,8 +248,8 @@ export default function PurchaseModal({
   const fee = isPromoWaiveFee ? 0 : 200000
   const totalPayment = finalPrice + fee
 
-  const tabKey = activeTab || (accountTitle.includes("PREMIUM") ? "premium" : accountTitle.includes("LITE") ? "lite" : "imtihonli")
-  const theme = themeStyles[tabKey] || themeStyles.premium
+  const tabKey = activeTab || (accountTitle.toUpperCase().includes("IMTIHONSIZ") ? "imtihonsiz" : accountTitle.includes("PREMIUM") ? "premium" : accountTitle.includes("LITE") ? "lite" : "imtihonli")
+  const theme = themeStyles[tabKey as keyof typeof themeStyles] || themeStyles.imtihonli
 
   if (!isOpen) return null
 

@@ -29,7 +29,7 @@ export default function ShartlarSection() {
     "Kunlik va umumiy zarar chegaralarini qat'iy rioya qiling",
     "Hisobni uchinchi shaxslarga bermang yoki ularga kirish huquqi bermang",
     "Barcha savdo operatsiyalari monitoring qilinadi",
-    "Pul yechish uchun kamida 14 kun kutish talab etiladi",
+    "Pul yechish uchun tarifga qarab 14 yoki 21 kun savdo qilish talab etiladi",
     "Hisobni bloklanishi holatida qayta tiklab bo'lmaydi",
     "Barcha shartlarni buzish hisobni darhol yopishga olib keladi",
   ]
