@@ -78,7 +78,7 @@ export default function FloatingAiBot() {
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-300"></span>
           </span>
           <Bot className="h-4 w-4 text-cyan-400 transition group-hover:rotate-12" />
-          <span>AI BOT: TARIFLAR & XARID</span>
+          <span>Telegram bot</span>
         </a>
 
         <button

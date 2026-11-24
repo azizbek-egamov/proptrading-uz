@@ -294,7 +294,7 @@ export default function PurchaseModal({
                       </span>
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-white text-[11px] sm:text-xs">
-                          Tezkor xarid: <span className="text-cyan-300 font-mono">@xorazmforexadminAI_bot</span>
+                          Tezkor xarid: <span className="text-cyan-300 font-bold">Telegram bot orqali</span>
                         </p>
                         <p className="text-[10px] text-gray-300 truncate">
                           Bot tariflar ma'lumotini beradi va hisobni avtomatik sotadi

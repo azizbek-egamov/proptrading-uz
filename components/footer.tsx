@@ -95,7 +95,7 @@ export default function Footer() {
               className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-gradient-to-r from-slate-900 to-cyan-950/40 px-3.5 py-2 text-xs font-bold text-cyan-300 transition-all hover:bg-cyan-900/50 hover:border-cyan-400"
             >
               <Bot className="w-4 h-4 text-cyan-400 animate-pulse" />
-              <span>AI Bot: @xorazmforexadminAI_bot</span>
+              <span>Telegram bot</span>
             </a>
           </div>
 

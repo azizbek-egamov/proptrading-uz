@@ -134,10 +134,10 @@ export default function AloqaSection() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-cyan-300 text-xs font-bold uppercase tracking-wider">Telegram AI Bot</p>
+                      <p className="text-cyan-300 text-xs font-bold uppercase tracking-wider">Telegram bot</p>
                       <span className="rounded bg-cyan-400/20 px-1.5 py-0.2 text-[9px] font-black text-cyan-200">24/7 ONLINE</span>
                     </div>
-                    <p className="text-white font-bold text-base truncate">@xorazmforexadminAI_bot</p>
+                    <p className="text-white font-bold text-base">Telegram bot orqali bog'lanish</p>
                     <p className="text-gray-300 text-xs">Tariflar haqida ma'lumot, hisob xaridi va arizalarni qabul qilish</p>
                   </div>
                 </a>
