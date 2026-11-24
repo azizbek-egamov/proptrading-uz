@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { X, CheckCircle, Send, Upload, CreditCard, Copy, FileText } from "lucide-react"
+import { X, CheckCircle, Send, Upload, CreditCard, Copy, FileText, Bot } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ofertaMatni } from "@/lib/oferta-content"
 
@@ -282,6 +282,26 @@ export default function PurchaseModal({
 
                 {currentStep === "form" ? (
                   <form onSubmit={handleFormSubmit} className="space-y-3 md:space-y-4">
+                    {/* Telegram AI Bot Quick Option */}
+                    <a
+                      href={process.env.NEXT_PUBLIC_TELEGRAM_AI_BOT || "https://t.me/xorazmforexadminAI_bot"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 rounded-xl border border-cyan-500/40 bg-gradient-to-r from-slate-900 to-cyan-950/40 p-2.5 text-xs text-cyan-300 transition-all hover:border-cyan-400 hover:bg-cyan-900/30"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-cyan-400/20 text-cyan-300">
+                        <Bot className="h-4 w-4" />
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-white text-[11px] sm:text-xs">
+                          Tezkor xarid: <span className="text-cyan-300 font-mono">@xorazmforexadminAI_bot</span>
+                        </p>
+                        <p className="text-[10px] text-gray-300 truncate">
+                          Bot tariflar ma'lumotini beradi va hisobni avtomatik sotadi
+                        </p>
+                      </div>
+                      <span className="text-[10px] font-black text-cyan-400 shrink-0">Botga o'tish →</span>
+                    </a>
                     <div>
                       <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
                         Ism familiyangiz <span className="text-red-500">*</span>

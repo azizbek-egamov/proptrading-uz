@@ -1,4 +1,4 @@
-import { Instagram, Youtube } from "lucide-react"
+import { Instagram, Youtube, Bot } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -37,6 +37,16 @@ export default function Footer() {
               Professional prop trading xizmatlari. Katta kapital bilan savdo qiling va yuqori daromad oling.
             </p>
             <div className="flex space-x-4">
+              <a
+                href={process.env.NEXT_PUBLIC_TELEGRAM_AI_BOT || "https://t.me/xorazmforexadminAI_bot"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/40 rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-all duration-300 hover-lift text-cyan-400 hover:text-white"
+                aria-label="Telegram AI Bot"
+                title="Telegram AI Bot: Tariflar va Xarid (@xorazmforexadminAI_bot)"
+              >
+                <Bot className="w-5 h-5" />
+              </a>
               <a
                 href="https://www.instagram.com/xorazmforex/"
                 target="_blank"
@@ -78,6 +88,15 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+            <a
+              href={process.env.NEXT_PUBLIC_TELEGRAM_AI_BOT || "https://t.me/xorazmforexadminAI_bot"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-gradient-to-r from-slate-900 to-cyan-950/40 px-3.5 py-2 text-xs font-bold text-cyan-300 transition-all hover:bg-cyan-900/50 hover:border-cyan-400"
+            >
+              <Bot className="w-4 h-4 text-cyan-400 animate-pulse" />
+              <span>AI Bot: @xorazmforexadminAI_bot</span>
+            </a>
           </div>
 
           {/* Services */}

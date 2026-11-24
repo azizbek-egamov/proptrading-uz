@@ -19,7 +19,8 @@ import {
   FileText,
   Eye,
   X,
-  Target
+  Target,
+  Bot
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -667,8 +668,60 @@ export default function PricingSection() {
           </div>
         </div>
 
+        {/* Telegram AI Bot - Highlighted Interactive Banner */}
+        <div className="mt-12 overflow-hidden rounded-2xl border-2 border-cyan-500/50 bg-gradient-to-r from-slate-950 via-cyan-950/40 to-blue-950 p-6 md:p-8 shadow-2xl shadow-cyan-950/40">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-cyan-500/30">
+                <Bot className="w-8 h-8 animate-pulse" />
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/40 text-xs font-black uppercase tracking-wider">
+                    24/7 AI Maslahatchi
+                  </span>
+                  <span className="text-xs text-gray-300 font-mono">@xorazmforexadminAI_bot</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-white">
+                  Tariflar haqida to'liq ma'lumot va hisoblarni tezkor xarid qilish
+                </h3>
+                <p className="text-sm text-gray-300 max-w-2xl leading-relaxed">
+                  Rasmiy <strong className="text-cyan-300">Telegram AI Botimiz</strong> barcha imtihonli va real tariflar bo'yicha darhol ma'lumot beradi, sizga mos hisobni tanlashda yordam beradi, buyurtmangizni rasmiylashtiradi va ma'lumotlaringizni avtomatik qabul qiladi.
+                </p>
+                <div className="flex flex-wrap gap-4 pt-1 text-xs text-cyan-200/90 font-medium">
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-cyan-400" /> Barcha tariflar bo'yicha javob
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-cyan-400" /> Hisoblarni to'g'ridan-to'g'ri sotish
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-cyan-400" /> Bir zumda ariza qoldirish
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-auto shrink-0">
+              <a
+                href={process.env.NEXT_PUBLIC_TELEGRAM_AI_BOT || "https://t.me/xorazmforexadminAI_bot"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-sm shadow-xl shadow-cyan-600/30 transition-all hover:scale-105 text-center"
+              >
+                <Bot className="w-5 h-5 text-white" />
+                <span>AI Bot orqali buyurtma berish</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <span className="text-[11px] text-gray-400 text-center">
+                Tezkor, navbatsiz va 24/7 onlayn
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* Footer Contact Banner from Flyer */}
-        <div className="mt-12 p-6 rounded-2xl bg-gray-900/80 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-6 p-6 rounded-2xl bg-gray-900/80 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
               <Sparkles className="w-5 h-5" />

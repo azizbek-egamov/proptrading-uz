@@ -13,6 +13,7 @@ import ScrollProgress from "@/components/scroll-progress"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import FloatingAiBot from "@/components/floating-ai-bot"
 
 // Lazy load katta komponentlar - faqat kerak bo'lganda yuklanadi
 const HowItWorksSection = lazy(() => import("@/components/how-it-works-section"))
@@ -525,6 +526,9 @@ export default function PropTradingLanding() {
           </div>
         </div>
       )}
+
+      {/* Floating Telegram AI Bot Widget */}
+      <FloatingAiBot />
 
       {/* Jivo Chat Widget */}
       <Script

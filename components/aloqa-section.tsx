@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Phone, MapPin, Send, CheckCircle } from "lucide-react"
+import { Phone, MapPin, Send, CheckCircle, Bot } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function AloqaSection() {
@@ -121,6 +121,26 @@ export default function AloqaSection() {
                     <p className="text-white font-semibold text-lg">O'zbekiston, Urganch</p>
                   </div>
                 </div>
+
+                {/* Telegram AI Bot Contact Card */}
+                <a
+                  href={process.env.NEXT_PUBLIC_TELEGRAM_AI_BOT || "https://t.me/xorazmforexadminAI_bot"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-4 p-3.5 rounded-xl border border-cyan-500/40 bg-gradient-to-r from-cyan-950/40 to-blue-950/30 hover:border-cyan-400 transition-all group shadow-md"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center shadow-md text-white shrink-0 group-hover:scale-105 transition-transform">
+                    <Bot className="w-6 h-6" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="text-cyan-300 text-xs font-bold uppercase tracking-wider">Telegram AI Bot</p>
+                      <span className="rounded bg-cyan-400/20 px-1.5 py-0.2 text-[9px] font-black text-cyan-200">24/7 ONLINE</span>
+                    </div>
+                    <p className="text-white font-bold text-base truncate">@xorazmforexadminAI_bot</p>
+                    <p className="text-gray-300 text-xs">Tariflar haqida ma'lumot, hisob xaridi va arizalarni qabul qilish</p>
+                  </div>
+                </a>
               </div>
             </div>
 
